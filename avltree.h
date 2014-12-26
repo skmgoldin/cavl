@@ -1,5 +1,6 @@
 struct Handle {
   struct Node *root;
+  int *comparator (void *newcomer, void *oldtimer); 
 };
 
 struct Node {
