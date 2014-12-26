@@ -11,7 +11,7 @@ struct Node *addnode(void *data) {
 
 /* This of course kills (deallocates) the tree for all handles. FYI. */
 int killtree(struct Handle *tree) {
-   
+  deallocatenode(tree->root); 
 }
 
 /* Recursive helper function for killtree */
