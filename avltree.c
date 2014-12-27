@@ -1,11 +1,17 @@
 #include "avltree.h"
 
 struct Handle *gettree(void *data) {
-  struct Handle handle = malloc(sizeof(struct Handle));
+  struct Handle *handle = malloc(sizeof(struct Handle));
   return handle;
 }
 
 struct Node *addnode(void *data) {
+  struct Node *node = malloc(sizeof(struct Node));
+  node->data = data;
+  placenode(node);
+}
+
+struct Node *placenode(struct Node *node) {
 
 }
 
