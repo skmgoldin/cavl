@@ -8,11 +8,24 @@ struct Handle *gettree(void *data) {
 struct Node *addnode(struct Handle *handle, void *data) {
   struct Node *node = malloc(sizeof(struct Node));
   node->data = data;
-  placenode(handle, node);
+  placenode(handle->root, node);
 }
 
-struct Node *placenode(struct Handle *handle, struct Node *node) {
-
+struct Node *placenode(struct Node *oldtimer, struct Node *newcomer) {
+  int cmpval = *(handle->comparator)(oldtimer->data, newcomer->data);
+  if(cmpval < 0 || cmpval == 0) {
+    if(oldtimer->lchild == NULL) {
+      oldtimer->lchild = newcomer;
+    } else {
+      placenode(oldtimer->lchild, newcomer);
+    }
+  } else if(cmpval > 0) {
+    if(oldtimer->rchild == NULL) {
+      oldtimer->rchild = newcomer;
+    } else {
+      placenode(oldtimer->rchild, newcomer);
+    }
+  }
 }
 
 /* This of course kills (deallocates) the tree for all handles. FYI. */
