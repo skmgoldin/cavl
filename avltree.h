@@ -9,7 +9,7 @@ struct Node {
   struct Node *rchild;
 };
 
-struct Handle *gettree(void *data);
+struct Handle *gettree(int (*comparator)(void *, void *), void *data);
 
 struct Node *addnode(struct Handle *handle, void *data);
 

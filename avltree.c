@@ -1,7 +1,9 @@
 #include "avltree.h"
 
-struct Handle *gettree(void *data) {
+struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
   struct Handle *handle = malloc(sizeof(struct Handle));
+  handle->comparator = comparator;
+  handle->data = data;
   return handle;
 }
 
