@@ -5,13 +5,13 @@ struct Handle *gettree(void *data) {
   return handle;
 }
 
-struct Node *addnode(void *data) {
+struct Node *addnode(struct Handle *handle, void *data) {
   struct Node *node = malloc(sizeof(struct Node));
   node->data = data;
-  placenode(node);
+  placenode(handle, node);
 }
 
-struct Node *placenode(struct Node *node) {
+struct Node *placenode(struct Handle *handle, struct Node *node) {
 
 }
 

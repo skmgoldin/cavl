@@ -11,6 +11,6 @@ struct Node {
 
 struct Handle *gettree(void *data);
 
-struct Node *addnode(void *data);
+struct Node *addnode(struct Handle *handle, void *data);
 
 int killtree(struct Handle *tree);
