@@ -16,14 +16,16 @@ struct Node *placenode(struct Node *oldtimer, struct Node *newcomer) {
   if(cmpval < 0 || cmpval == 0) {
     if(oldtimer->lchild == NULL) {
       oldtimer->lchild = newcomer;
+      return newcomer;
     } else {
-      placenode(oldtimer->lchild, newcomer);
+      return placenode(oldtimer->lchild, newcomer);
     }
   } else if(cmpval > 0) {
     if(oldtimer->rchild == NULL) {
       oldtimer->rchild = newcomer;
+      return newcomer;
     } else {
-      placenode(oldtimer->rchild, newcomer);
+      return placenode(oldtimer->rchild, newcomer);
     }
   }
 }
