@@ -13,7 +13,7 @@ int intcomparator(void *a, void *b) {
 int main(int argc, char **argv) {
 
   printf("%s\n", "Building tree");
-  struct Handle *tree = gettree(&intcomparator, (void *) *(argv));
+  struct Handle *tree = gettree(&intcomparator, (void *) *(argv + 1));
   printf("%s\n", "Tree built.");
 
   printf("%s\n", "Deallocating tree.");
