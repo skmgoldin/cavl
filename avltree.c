@@ -8,22 +8,22 @@ struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
   return handle;
 }
 
-struct Node *placenode(struct Node *oldtimer, struct Node *newcomer, 
+struct Node *placenode(struct Node *root, struct Node *newnode, 
                        int (*comparator)(void *, void *)) {
-  int cmpval = comparator(oldtimer->data, newcomer->data);
+  int cmpval = comparator(root->data, newnode->data);
   if(cmpval < 0 || cmpval == 0) {
-    if(oldtimer->lchild == NULL) {
-      oldtimer->lchild = newcomer;
-      return newcomer;
+    if(root->lchild == NULL) {
+      root->lchild = newnode;
+      return newnode;
     } else {
-      return placenode(oldtimer->lchild, newcomer, comparator);
+      return placenode(root->lchild, newnode, comparator);
     }
   } else if(cmpval > 0) {
-    if(oldtimer->rchild == NULL) {
-      oldtimer->rchild = newcomer;
-      return newcomer;
+    if(root->rchild == NULL) {
+      root->rchild = newnode;
+      return newnode;
     } else {
-      return placenode(oldtimer->rchild, newcomer, comparator);
+      return placenode(root->rchild, newnode, comparator);
     }
   }
 
