@@ -8,36 +8,32 @@ struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
   return handle;
 }
 
-struct Node *placenode(struct Node *oldtimer, struct Node *newcomer) {
-  int cmpval = *(handle->comparator)(oldtimer->data, newcomer->data);
+struct Node *placenode(struct Node *oldtimer, struct Node *newcomer, 
+                       int (*comparator)(void *, void *)) {
+  int cmpval = comparator(oldtimer->data, newcomer->data);
   if(cmpval < 0 || cmpval == 0) {
     if(oldtimer->lchild == NULL) {
       oldtimer->lchild = newcomer;
       return newcomer;
     } else {
-      return placenode(oldtimer->lchild, newcomer);
+      return placenode(oldtimer->lchild, newcomer, comparator);
     }
   } else if(cmpval > 0) {
     if(oldtimer->rchild == NULL) {
       oldtimer->rchild = newcomer;
       return newcomer;
     } else {
-      return placenode(oldtimer->rchild, newcomer);
+      return placenode(oldtimer->rchild, newcomer, comparator);
     }
   }
+
+  return 0;
 }
 
 struct Node *addnode(struct Handle *handle, void *data) {
   struct Node *node = malloc(sizeof(struct Node));
   node->data = data;
-  placenode(handle->root, node);
-}
-
-/* This of course kills (deallocates) the tree for all handles. FYI. */
-int killtree(struct Handle *tree) {
-  deallocatenode(tree->root); 
-  free(tree);
-  return 1;
+  return placenode(handle->root, node, handle->comparator);
 }
 
 /* Recursive helper function for killtree */
@@ -58,3 +54,12 @@ int deallocatenode(struct Node *node) {
 
   return 1;
 }
+
+/* This of course kills (deallocates) the tree for all handles. FYI. */
+int killtree(struct Handle *tree) {
+  deallocatenode(tree->root); 
+  free(tree);
+  return 1;
+}
+
+
