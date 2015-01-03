@@ -10,4 +10,10 @@ test.o: test.c avltree.h
 avltree.o: avltree.c avltree.h
 	clang -c avltree.c
 
+PHONY: clean
+clean:
+	rm -f *.o
 
+PHONY: all
+all: clean
+	make
