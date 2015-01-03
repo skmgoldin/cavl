@@ -1,16 +1,11 @@
+#include <stdlib.h>
 #include "avltree.h"
 
 struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
   struct Handle *handle = malloc(sizeof(struct Handle));
   handle->comparator = comparator;
-  handle->data = data;
+  handle->root->data = data;
   return handle;
-}
-
-struct Node *addnode(struct Handle *handle, void *data) {
-  struct Node *node = malloc(sizeof(struct Node));
-  node->data = data;
-  placenode(handle->root, node);
 }
 
 struct Node *placenode(struct Node *oldtimer, struct Node *newcomer) {
@@ -30,6 +25,12 @@ struct Node *placenode(struct Node *oldtimer, struct Node *newcomer) {
       return placenode(oldtimer->rchild, newcomer);
     }
   }
+}
+
+struct Node *addnode(struct Handle *handle, void *data) {
+  struct Node *node = malloc(sizeof(struct Node));
+  node->data = data;
+  placenode(handle->root, node);
 }
 
 /* This of course kills (deallocates) the tree for all handles. FYI. */

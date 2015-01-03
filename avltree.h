@@ -5,7 +5,7 @@
 
 struct Handle {
   struct Node *root;
-  int (*comparator) (void *, void *); 
+  int (*comparator)(void *, void *); 
 };
 
 struct Node {
