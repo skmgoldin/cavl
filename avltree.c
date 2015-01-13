@@ -16,11 +16,17 @@ struct Handle *allochandle() {
   return handle;
 }
 
-struct Node *addnode(struct Handle *handle, void *data) {
+struct Node *allocnode() {
   struct Node *node = malloc(sizeof(struct Node));
-  node->data = data;
+  node->data = NULL;
   node->lchild = NULL;
   node->rchild = NULL;
+  return node;
+}
+
+struct Node *addnode(struct Handle *handle, void *data) {
+  struct Node *node = allocnode();
+  node->data = data;
 
   if(handle->root == NULL) {
     printf("%s\n", "Making root.");

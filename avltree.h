@@ -28,4 +28,6 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 
 struct Handle *allochandle();
 
+struct Node *allocnode();
+
 #endif /* AVLTREE_H */
