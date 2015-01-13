@@ -16,9 +16,9 @@ struct Node {
 };
 
 /* Public Functions */
-struct Handle *gettree(int (*comparator)(void *, void *), void *data);
+struct Handle *gettree(int (*comparator)(void *, void *));
 
-struct Node *addnode(struct Handle *handle, void *data);
+struct Node *addleaf(struct Handle *handle, void *data);
 
 int killtree(struct Handle *tree);
 
@@ -29,5 +29,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 struct Handle *allochandle();
 
 struct Node *allocnode();
+
+int deallocnode(struct Node *node);
 
 #endif /* AVLTREE_H */
