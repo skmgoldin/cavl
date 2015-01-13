@@ -6,14 +6,13 @@
  * Public Functions
  */
 
-struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
+struct Handle *gettree(int (*comparator)(void *, void *)) {
   struct Handle *handle = allochandle();
   handle->comparator = comparator;
-  addnode(handle, data);
   return handle;
 }
 
-struct Node *addnode(struct Handle *handle, void *data) {
+struct Node *addleaf(struct Handle *handle, void *data) {
   struct Node *node = allocnode();
   node->data = data;
 
@@ -28,7 +27,7 @@ struct Node *addnode(struct Handle *handle, void *data) {
 
 /* This of course kills (deallocates) the tree for all handles. FYI. */
 int killtree(struct Handle *tree) {
-  deallocatenode(tree->root); 
+  deallocnode(tree->root); 
   free(tree);
   return 1;
 }
@@ -78,7 +77,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 }
 
 /* Recursive helper function for killtree */
-int deallocatenode(struct Node *node) {
+int deallocnode(struct Node *node) {
 
   /* Base case */
   if(node->lchild == NULL && node->rchild == NULL) {
@@ -88,9 +87,9 @@ int deallocatenode(struct Node *node) {
   } 
  
   if(node->lchild != NULL) {
-    deallocatenode(node->lchild);
+    deallocnode(node->lchild);
   } if(node->rchild != NULL) { 
-    deallocatenode(node->rchild);
+    deallocnode(node->rchild);
   }
 
   return 1;

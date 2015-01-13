@@ -11,10 +11,15 @@ int intcomparator(void *a, void *b) {
 
   return 1;
 }
-int main(int argc, char **argv) {
 
+int main(int argc, char **argv) {
+  
   printf("%s\n", "Building tree");
-  struct Handle *tree = gettree(&intcomparator, (void *) *(argv + 1));
+  struct Handle *tree = gettree(&intcomparator);
+
+  for(int x = 1; x < argc; x++) {
+    addleaf(tree, argv + x); 
+  }
   printf("%s\n", "Tree built.");
 
   printf("%s\n", "Deallocating tree.");
