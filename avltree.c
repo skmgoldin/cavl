@@ -6,14 +6,16 @@
  * Public Functions
  */
 
-struct Handle *gettree(int (*comparator)(void *, void *)) {
+struct Handle *gettree(int (*comparator)(void *, void *), size_t datasize) {
   struct Handle *handle = allochandle();
   handle->comparator = comparator;
+  handle->datasize = datasize;
   return handle;
 }
 
 struct Node *addleaf(struct Handle *handle, void *data) {
   struct Node *node = allocnode();
+  node->data = malloc(handle->datasize);
   node->data = data;
 
   if(handle->root == NULL) {
@@ -25,10 +27,13 @@ struct Node *addleaf(struct Handle *handle, void *data) {
   return placenode(handle->root, node, handle->comparator);
 }
 
-/* This of course kills (deallocates) the tree for all handles. FYI. */
-int killtree(struct Handle *tree) {
-  deallocnode(tree->root); 
-  free(tree);
+/* This of course deallocates the tree for all handles. FYI. */
+int killtree(struct Handle *handle) {
+  if(handle->root != NULL) {
+    deallocnode(handle->root); 
+  }
+  printf("%s\n", "dealloc handle");
+  free(handle);
   return 1;
 }
 
@@ -40,6 +45,7 @@ struct Handle *allochandle() {
   struct Handle *handle = malloc(sizeof(struct Handle));
   handle->comparator = NULL;
   handle->root = NULL;
+  handle->datasize = 0;
   return handle;
 }
 
@@ -53,7 +59,6 @@ struct Node *allocnode() {
 
 struct Node *placenode(struct Node *root, struct Node *newnode, 
                        int (*comparator)(void *, void *)) {
-  /* FAILURE IS AT COMPARATOR */
   printf("%s\n", "Getting cmpval...");
   int cmpval = (*comparator)(root->data, newnode->data);
   printf("%s\n", "compare successful");
@@ -78,14 +83,15 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 
 /* Recursive helper function for killtree */
 int deallocnode(struct Node *node) {
-
   /* Base case */
   if(node->lchild == NULL && node->rchild == NULL) {
+    printf("%s\n", "Dealloc root...");
     free(node->data);
     free(node);
     return 1;
   } 
  
+  printf("%s\n", "Dealloc leaf...");
   if(node->lchild != NULL) {
     deallocnode(node->lchild);
   } if(node->rchild != NULL) { 
