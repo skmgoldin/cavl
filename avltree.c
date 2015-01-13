@@ -2,12 +2,40 @@
 #include "avltree.h"
 #include <stdio.h>
 
+/* 
+ * Public Functions
+ */
+
 struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
   struct Handle *handle = allochandle();
   handle->comparator = comparator;
   addnode(handle, data);
   return handle;
 }
+
+struct Node *addnode(struct Handle *handle, void *data) {
+  struct Node *node = allocnode();
+  node->data = data;
+
+  if(handle->root == NULL) {
+    printf("%s\n", "Making root.");
+    handle->root = node;
+    return handle->root;
+  }
+
+  return placenode(handle->root, node, handle->comparator);
+}
+
+/* This of course kills (deallocates) the tree for all handles. FYI. */
+int killtree(struct Handle *tree) {
+  deallocatenode(tree->root); 
+  free(tree);
+  return 1;
+}
+
+/*
+ * Private Functions
+ */
 
 struct Handle *allochandle() {
   struct Handle *handle = malloc(sizeof(struct Handle));
@@ -22,19 +50,6 @@ struct Node *allocnode() {
   node->lchild = NULL;
   node->rchild = NULL;
   return node;
-}
-
-struct Node *addnode(struct Handle *handle, void *data) {
-  struct Node *node = allocnode();
-  node->data = data;
-
-  if(handle->root == NULL) {
-    printf("%s\n", "Making root.");
-    handle->root = node;
-    return handle->root;
-  }
-
-  return placenode(handle->root, node, handle->comparator);
 }
 
 struct Node *placenode(struct Node *root, struct Node *newnode, 
@@ -71,20 +86,13 @@ int deallocatenode(struct Node *node) {
     free(node);
     return 1;
   } 
-  
+ 
   if(node->lchild != NULL) {
     deallocatenode(node->lchild);
   } if(node->rchild != NULL) { 
     deallocatenode(node->rchild);
   }
 
-  return 1;
-}
-
-/* This of course kills (deallocates) the tree for all handles. FYI. */
-int killtree(struct Handle *tree) {
-  deallocatenode(tree->root); 
-  free(tree);
   return 1;
 }
 
