@@ -9,10 +9,21 @@ struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
   return handle;
 }
 
+struct Node *addnode(struct Handle *handle, void *data) {
+  struct Node *node = malloc(sizeof(struct Node));
+  node->data = data;
+  if(handle->root == NULL) {
+    handle->root = node;
+    return handle->root;
+  }
+  return placenode(handle->root, node, handle->comparator);
+}
+
 struct Node *placenode(struct Node *root, struct Node *newnode, 
                        int (*comparator)(void *, void *)) {
   /* FAILURE IS AT COMPARATOR */
-  int cmpval = comparator(root->data, newnode->data);
+  printf("%s\n", "Getting cmpval...");
+  int cmpval = (*comparator)(root->data, newnode->data);
   printf("%s\n", "compare successful");
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
@@ -31,13 +42,6 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   }
 
   return 0;
-}
-
-struct Node *addnode(struct Handle *handle, void *data) {
-  struct Node *node = malloc(sizeof(struct Node));
-  node->data = data;
-  printf("%s\n", "node->data = data: complete");
-  return placenode(handle->root, node, handle->comparator);
 }
 
 /* Recursive helper function for killtree */
