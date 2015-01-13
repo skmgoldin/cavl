@@ -26,4 +26,6 @@ int killtree(struct Handle *tree);
 struct Node *placenode(struct Node *root, struct Node *newnode,
                        int (*comparator)(void *, void *));
 
+struct Handle *allochandle();
+
 #endif /* AVLTREE_H */

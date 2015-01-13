@@ -3,19 +3,31 @@
 #include <stdio.h>
 
 struct Handle *gettree(int (*comparator)(void *, void *), void *data) {
-  struct Handle *handle = malloc(sizeof(struct Handle));
+  struct Handle *handle = allochandle();
   handle->comparator = comparator;
   addnode(handle, data);
+  return handle;
+}
+
+struct Handle *allochandle() {
+  struct Handle *handle = malloc(sizeof(struct Handle));
+  handle->comparator = NULL;
+  handle->root = NULL;
   return handle;
 }
 
 struct Node *addnode(struct Handle *handle, void *data) {
   struct Node *node = malloc(sizeof(struct Node));
   node->data = data;
+  node->lchild = NULL;
+  node->rchild = NULL;
+
   if(handle->root == NULL) {
+    printf("%s\n", "Making root.");
     handle->root = node;
     return handle->root;
   }
+
   return placenode(handle->root, node, handle->comparator);
 }
 
