@@ -20,13 +20,10 @@ struct Handle *gettree(int (*comparator)(void *, void *), size_t datasize) {
 }
 
 struct Node *addleaf(struct Handle *handle, void *data) {
-  printf("%s\n", "Alloc node.");
   struct Node *node = allocnode();
-  printf("%s\n", "Alloc node->data.");
   node->data = data;
 
   if(handle->root == NULL) {
-    printf("%s\n", "Make node handle->root.");
     handle->root = node;
     return handle->root;
   }
@@ -39,7 +36,6 @@ int killtree(struct Handle *handle) {
   if(handle->root != NULL) {
     deallocnode(handle->root); 
   }
-  printf("%s\n", "dealloc handle");
   free(handle);
   return 1;
 }
@@ -66,9 +62,7 @@ struct Node *allocnode() {
 
 struct Node *placenode(struct Node *root, struct Node *newnode, 
                        int (*comparator)(void *, void *)) {
-  printf("%s\n", "Getting cmpval...");
   int cmpval = (*comparator)(root->data, newnode->data);
-  printf("%s\n", "compare successful");
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
       root->lchild = newnode;
@@ -103,7 +97,6 @@ int deallocnode(struct Node *node) {
   
   /* Base case */
   if(node->lchild == NULL && node->rchild == NULL) {
-    printf("%s\n", "Dealloc leaf...");
     free(node);
     return 1;
   }
