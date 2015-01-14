@@ -16,6 +16,7 @@ struct Handle {
 struct Node {
   void *data;
   int height;
+  int needsrotations;
   struct Node *lchild;
   struct Node *rchild;
 };
