@@ -14,12 +14,14 @@ struct Handle *gettree(int (*comparator)(void *, void *), size_t datasize) {
 }
 
 struct Node *addleaf(struct Handle *handle, void *data) {
+  printf("%s\n", "Alloc node.");
   struct Node *node = allocnode();
-  node->data = malloc(handle->datasize);
+  printf("%s\n", "Alloc node->data.");
+  //node->data = malloc(handle->datasize);
   node->data = data;
 
   if(handle->root == NULL) {
-    printf("%s\n", "Making root.");
+    printf("%s\n", "Make nood handle->root.");
     handle->root = node;
     return handle->root;
   }
@@ -86,7 +88,7 @@ int deallocnode(struct Node *node) {
   /* Base case */
   if(node->lchild == NULL && node->rchild == NULL) {
     printf("%s\n", "Dealloc root...");
-    free(node->data);
+    //free(node->data);
     free(node);
     return 1;
   } 
