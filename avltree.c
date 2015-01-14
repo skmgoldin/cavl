@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "avltree.h"
+#include "resourcecontrol.h"
 #include <stdio.h>
 
 /* FYI: This works because taking arguments into the program lets the OS manage
@@ -44,22 +45,6 @@ int killtree(struct Handle *handle) {
  * Private Functions
  */
 
-struct Handle *allochandle() {
-  struct Handle *handle = malloc(sizeof(struct Handle));
-  handle->comparator = NULL;
-  handle->root = NULL;
-  handle->datasize = 0;
-  return handle;
-}
-
-struct Node *allocnode() {
-  struct Node *node = malloc(sizeof(struct Node));
-  node->data = NULL;
-  node->lchild = NULL;
-  node->rchild = NULL;
-  return node;
-}
-
 struct Node *placenode(struct Node *root, struct Node *newnode, 
                        int (*comparator)(void *, void *)) {
   int cmpval = (*comparator)(root->data, newnode->data);
@@ -82,26 +67,6 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   return 0;
 }
 
-/* Recursive helper function for killtree */
-int deallocnode(struct Node *node) {
-   
-  if(node->lchild != NULL) {
-    printf("%s\n", "recurse to lchild...");
-    deallocnode(node->lchild);
-    node->lchild = NULL;
-    printf("%s\n", "recurse to rchild...");
-  } if(node->rchild != NULL) { 
-    deallocnode(node->rchild);
-    node->rchild = NULL;
-  }
-  
-  /* Base case */
-  if(node->lchild == NULL && node->rchild == NULL) {
-    free(node);
-    return 1;
-  }
 
-  return 1;
-}
 
 

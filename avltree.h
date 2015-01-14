@@ -1,21 +1,7 @@
 #ifndef AVLTREE_H
 #define AVLTREE_H
 
-#include "avltree.h"
-#include <stdlib.h>
-
-/* Data Structures */
-struct Handle {
-  struct Node *root;
-  int (*comparator)(void *, void *); 
-  size_t datasize;
-};
-
-struct Node {
-  void *data;
-  struct Node *lchild;
-  struct Node *rchild;
-};
+#include "datastructures.h"
 
 /* Public Functions */
 struct Handle *gettree(int (*comparator)(void *, void *), size_t datasize);
@@ -28,10 +14,5 @@ int killtree(struct Handle *handle);
 struct Node *placenode(struct Node *root, struct Node *newnode,
                        int (*comparator)(void *, void *));
 
-struct Handle *allochandle();
-
-struct Node *allocnode();
-
-int deallocnode(struct Node *node);
 
 #endif /* AVLTREE_H */
