@@ -2,13 +2,13 @@
 #include <assert.h>
 #include <stdio.h>
 
-int intcomparator(void *a, void *b) {
-  int inta = atoi((char *) a);
-  int intb = atoi((char *) b); //*((int *) b);
+int intcomparator(void *rootvalue, void *newvalue) {
+  int rootintvalue = atoi((char *) rootvalue);
+  int newintvalue = atoi((char *) newvalue);
 
-  if(inta == intb) {return 0;}
-  if(inta < intb) {return -1;}
-  if(inta > intb) {return 1;}
+  if(newintvalue == rootintvalue) {return 0;}
+  if(newintvalue < rootintvalue) {return -1;}
+  if(newintvalue > rootintvalue) {return 1;}
 
   return 1; // Never happens
 }
