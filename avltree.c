@@ -2,6 +2,12 @@
 #include "avltree.h"
 #include <stdio.h>
 
+/* FYI: This works because taking arguments into the program lets the OS manage
+ * that memory automatically. I need to update the struct Handle with a field
+ * the user can specify at construction which notes for the destructor whether
+ * the tree's node->data pointers need to be deallocated or not.
+ */
+
 /* 
  * Public Functions
  */
@@ -17,11 +23,10 @@ struct Node *addleaf(struct Handle *handle, void *data) {
   printf("%s\n", "Alloc node.");
   struct Node *node = allocnode();
   printf("%s\n", "Alloc node->data.");
-  //node->data = malloc(handle->datasize);
   node->data = data;
 
   if(handle->root == NULL) {
-    printf("%s\n", "Make nood handle->root.");
+    printf("%s\n", "Make node handle->root.");
     handle->root = node;
     return handle->root;
   }
@@ -85,19 +90,22 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 
 /* Recursive helper function for killtree */
 int deallocnode(struct Node *node) {
-  /* Base case */
-  if(node->lchild == NULL && node->rchild == NULL) {
-    printf("%s\n", "Dealloc root...");
-    //free(node->data);
-    free(node);
-    return 1;
-  } 
- 
-  printf("%s\n", "Dealloc leaf...");
+   
   if(node->lchild != NULL) {
+    printf("%s\n", "recurse to lchild...");
     deallocnode(node->lchild);
+    node->lchild = NULL;
+    printf("%s\n", "recurse to rchild...");
   } if(node->rchild != NULL) { 
     deallocnode(node->rchild);
+    node->rchild = NULL;
+  }
+  
+  /* Base case */
+  if(node->lchild == NULL && node->rchild == NULL) {
+    printf("%s\n", "Dealloc leaf...");
+    free(node);
+    return 1;
   }
 
   return 1;
