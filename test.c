@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 int intcomparator(void *a, void *b) {
-  printf("%s\n", "Comparing...");
   int inta = atoi((char *) a);
   int intb = atoi((char *) b); //*((int *) b);
 
