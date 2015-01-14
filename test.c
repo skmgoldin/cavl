@@ -4,12 +4,14 @@
 
 int intcomparator(void *a, void *b) {
   printf("%s\n", "Comparing...");
-  int inta = *((int *) a);
-  int intb = *((int *) b);
+  int inta = atoi((char *) a);
+  int intb = atoi((char *) b); //*((int *) b);
 
   if(inta == intb) {return 0;}
+  if(inta < intb) {return -1;}
+  if(inta > intb) {return 1;}
 
-  return 1;
+  return 1; // Never happens
 }
 
 int main(int argc, char **argv) {
