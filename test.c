@@ -15,10 +15,10 @@ int intcomparator(void *a, void *b) {
 int main(int argc, char **argv) {
   
   printf("%s\n", "Building tree");
-  struct Handle *tree = gettree(&intcomparator);
+  struct Handle *tree = gettree(&intcomparator, sizeof(int));
 
   for(int x = 1; x < argc; x++) {
-    addleaf(tree, argv + x); 
+    addleaf(tree, (void *) *(argv + x)); 
   }
   printf("%s\n", "Tree built.");
 
