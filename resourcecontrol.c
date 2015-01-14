@@ -11,6 +11,7 @@ struct Handle *allochandle() {
 struct Node *allocnode() {
   struct Node *node = malloc(sizeof(struct Node));
   node->data = NULL;
+  node->height = 0;
   node->lchild = NULL;
   node->rchild = NULL;
   return node;

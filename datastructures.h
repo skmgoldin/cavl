@@ -11,6 +11,7 @@ struct Handle {
 
 struct Node {
   void *data;
+  int height;
   struct Node *lchild;
   struct Node *rchild;
 };
