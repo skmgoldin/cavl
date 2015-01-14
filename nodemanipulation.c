@@ -18,6 +18,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
       root->rchild = newnode;
+      newnode->height = root->height + 1;
       return newnode;
     } else {
       return placenode(root->rchild, newnode, comparator);
@@ -25,5 +26,9 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   }
 
   /* Control never reaches this point. */
+  return NULL;
+}
+
+struct Node *singlerotation() {
   return NULL;
 }
