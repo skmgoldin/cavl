@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "avltree.h"
 #include "resourcecontrol.h"
+#include "nodemanipulation.h"
 #include <stdio.h>
 
 /* FYI: This works because taking arguments into the program lets the OS manage
