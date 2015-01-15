@@ -6,7 +6,7 @@
 struct Node *placenode(struct Node *root, struct Node *newnode,
                        int (*comparator)(void *, void *));
 
-struct Node *assignchild(struct Node *childpointer, struct Node *newnode,
+struct Node *assignchild(struct Node **childpointer, struct Node *newnode,
                          int rootheight);
 
 struct Node *singlerotation();

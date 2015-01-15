@@ -12,7 +12,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      return assignchild(root->lchild, newnode, root->height);
+      return assignchild(&root->lchild, newnode, root->height);
     } else {
       return placenode(root->lchild, newnode, comparator);
     }
@@ -20,7 +20,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      return assignchild(root->rchild, newnode, root->height);
+      return assignchild(&root->rchild, newnode, root->height);
     } else {
       return placenode(root->rchild, newnode, comparator);
     }
@@ -30,9 +30,10 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   return NULL;
 }
 
-struct Node *assignchild(struct Node *childpointer, struct Node *newnode,
+struct Node *assignchild(struct Node **childpointer, struct Node *newnode,
                          int rootheight) {
-    childpointer = newnode;
+
+    *childpointer = newnode;
     newnode->height = rootheight + 1;
     return newnode;
 }

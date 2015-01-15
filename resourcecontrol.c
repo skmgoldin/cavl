@@ -5,6 +5,7 @@ struct Handle *allochandle() {
   handle->comparator = NULL;
   handle->root = NULL;
   handle->datasize = 0;
+  handle->anchorheight = 0;
   return handle;
 }
 
