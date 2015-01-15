@@ -26,7 +26,13 @@ struct Node *addnode(struct Handle *handle, void *data) {
     return handle->root;
   }
 
-  return placenode(handle->root, node, handle->comparator);
+  placenode(handle->root, node, handle->comparator);
+
+  if(node->height > handle->anchorheight + 1) {
+    ; // rotation, but how do we tell here whether to do a double or single?
+  }
+
+  return node;
 }
 
 /* This of course deallocates the tree for all handles. FYI. */

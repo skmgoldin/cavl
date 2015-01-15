@@ -15,8 +15,8 @@ struct Handle {
 
 struct Node {
   void *data;
-  int height;
-  int needsrotations;
+  int height; // Not strictly space efficient.
+  int needsrotations; // Not strictly space efficient.
   struct Node *lchild;
   struct Node *rchild;
 };
