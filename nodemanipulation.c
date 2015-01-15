@@ -7,9 +7,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      root->lchild = newnode;
-      newnode->height = root->height + 1;
-      return newnode;
+      return assignchild(root->lchild, newnode, root->height);
     } else {
       return placenode(root->lchild, newnode, comparator);
     }
@@ -17,9 +15,7 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      root->rchild = newnode;
-      newnode->height = root->height + 1;
-      return newnode;
+      return assignchild(root->rchild, newnode, root->height);
     } else {
       return placenode(root->rchild, newnode, comparator);
     }
@@ -27,6 +23,14 @@ struct Node *placenode(struct Node *root, struct Node *newnode,
 
   /* Control never reaches this point. */
   return NULL;
+}
+
+struct Node *assignchild(struct Node *childpointer, struct Node *newnode,
+                         int rootheight) {
+    childpointer = newnode;
+    newnode->height = rootheight + 1;
+
+    return newnode;
 }
 
 struct Node *singlerotation() {
