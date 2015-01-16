@@ -1,4 +1,5 @@
 #include "nodemanipulation.h"
+#include "resourcecontrol.h"
 
 // Need a "Rotation Master" function above the node placement function with
 // access to the handle's rootanchor to determine both whether a rotation is
@@ -29,7 +30,7 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
     if(root->lchild == NULL) {
       return assignchild(&root->lchild, carriage->node, root->height);
     } else {
-      return placenode(root->lchild, carriage->node, comparator);
+      return placenode(root->lchild, carriage, comparator);
     }
   }
   
@@ -37,7 +38,7 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
     if(root->rchild == NULL) {
       return assignchild(&root->rchild, carriage->node, root->height);
     } else {
-      return placenode(root->rchild, carriage->node, comparator);
+      return placenode(root->rchild, carriage, comparator);
     }
   }
 

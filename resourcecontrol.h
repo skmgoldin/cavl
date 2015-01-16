@@ -5,6 +5,8 @@
 
 struct Handle *allochandle();
 
+struct Carriage *alloccarriage();
+
 struct Node *allocnode();
 
 int deallocnode(struct Node *node);
