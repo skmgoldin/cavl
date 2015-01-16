@@ -5,6 +5,15 @@
 // necessary and what type. We probably also need to return cmpval from
 // placenode() so we know whether it should be inner or outer.
 
+struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
+
+  placenode(handle->root, node, handle->comparator);
+
+  if(node->height > handle->anchorheight + 1) {
+    ;//rotation
+  }
+}
+
 struct Node *placenode(struct Node *root, struct Node *newnode, 
                        int (*comparator)(void *, void *)) {
 

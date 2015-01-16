@@ -3,6 +3,8 @@
 
 #include "datastructures.h"
 
+struct Node *addnodemanager(struct Handle *handle, struct Node *newnode);
+
 struct Node *placenode(struct Node *root, struct Node *newnode,
                        int (*comparator)(void *, void *));
 
