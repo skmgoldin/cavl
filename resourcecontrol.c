@@ -13,6 +13,8 @@ struct Carriage *alloccarriage() {
   struct Carriage *carriage = malloc(sizeof(struct Carriage));
   carriage->node = NULL;
   carriage->rotationstatus = 0;
+  carriage->anchorheight = 0;
+  carriage->currheight = 0;
 }
 
 struct Node *allocnode() {

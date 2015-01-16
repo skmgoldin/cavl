@@ -7,12 +7,17 @@
 
 struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
+  carriage->node = newnode;
+  carriage->anchorheight = handle->anchorheight;
 
   placenode(handle->root, node, handle->comparator);
 
-  if(node->height > handle->anchorheight + 1) {
-    ;//rotation
+  if(newnode->height > handle->anchorheight + 1) {
+    ;//rotate and update anchorheight
   }
+
+  free(carriage);
+  return newnode;
 }
 
 struct Node *placenode(struct Node *root, struct Node *newnode, 

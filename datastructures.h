@@ -23,6 +23,8 @@ struct Node {
 struct Carriage {
   struct Node *node;
   int rotationstatus;
+  int anchorheight;
+  int currheight;
 };
 
 #endif /* DATASTRUCTURES_H */
