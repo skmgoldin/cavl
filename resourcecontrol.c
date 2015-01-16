@@ -9,6 +9,12 @@ struct Handle *allochandle() {
   return handle;
 }
 
+struct Carriage *alloccarriage() {
+  struct Carriage *carriage = malloc(sizeof(struct Carriage));
+  carriage->node = NULL;
+  carriage->rotationstatus = 0;
+}
+
 struct Node *allocnode() {
   struct Node *node = malloc(sizeof(struct Node));
   node->data = NULL;

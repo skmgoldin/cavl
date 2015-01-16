@@ -6,6 +6,7 @@
 // placenode() so we know whether it should be inner or outer.
 
 struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
+  struct Carriage *carriage = alloccarriage();
 
   placenode(handle->root, node, handle->comparator);
 
