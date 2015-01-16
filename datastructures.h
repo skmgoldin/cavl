@@ -15,10 +15,14 @@ struct Handle {
 
 struct Node {
   void *data;
-  int height; // Not strictly space efficient.
-  int needsrotations; // Not strictly space efficient.
+  int height; // Not strictly space efficient?
   struct Node *lchild;
   struct Node *rchild;
 };
+
+struct Carriage {
+  struct Node *node;
+  int rotationstatus;;
+}
 
 #endif /* DATASTRUCTURES_H */
