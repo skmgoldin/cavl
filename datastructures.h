@@ -22,7 +22,7 @@ struct Node {
 
 struct Carriage {
   struct Node *node;
-  int rotationstatus;;
-}
+  int rotationstatus;
+};
 
 #endif /* DATASTRUCTURES_H */
