@@ -26,7 +26,7 @@ struct Node *addnode(struct Handle *handle, void *data) {
     return handle->root;
   }
 
-  addnodemanager(handle, node);
+  addnodemanager(handle, newnode);
 
   return newnode;
 }

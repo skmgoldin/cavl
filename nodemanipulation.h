@@ -5,7 +5,7 @@
 
 struct Node *addnodemanager(struct Handle *handle, struct Node *newnode);
 
-struct Node *placenode(struct Node *root, struct Node *newnode,
+struct Node *placenode(struct Node *root, struct Carriage *carriage,
                        int (*comparator)(void *, void *));
 
 struct Node *assignchild(struct Node **childpointer, struct Node *newnode,

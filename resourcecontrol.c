@@ -15,6 +15,8 @@ struct Carriage *alloccarriage() {
   carriage->rotationstatus = 0;
   carriage->anchorheight = 0;
   carriage->currheight = 0;
+
+  return carriage;
 }
 
 struct Node *allocnode() {

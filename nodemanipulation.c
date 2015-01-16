@@ -10,7 +10,7 @@ struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
   carriage->node = newnode;
   carriage->anchorheight = handle->anchorheight;
 
-  placenode(handle->root, node, handle->comparator);
+  placenode(handle->root, carriage, handle->comparator);
 
   if(newnode->height > handle->anchorheight + 1) {
     ;//rotate and update anchorheight
@@ -20,24 +20,24 @@ struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
   return newnode;
 }
 
-struct Node *placenode(struct Node *root, struct Node *newnode, 
+struct Node *placenode(struct Node *root, struct Carriage *carriage, 
                        int (*comparator)(void *, void *)) {
 
-  int cmpval = (*comparator)(root->data, newnode->data);
+  int cmpval = (*comparator)(root->data, carriage->node->data);
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      return assignchild(&root->lchild, newnode, root->height);
+      return assignchild(&root->lchild, carriage->node, root->height);
     } else {
-      return placenode(root->lchild, newnode, comparator);
+      return placenode(root->lchild, carriage->node, comparator);
     }
   }
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      return assignchild(&root->rchild, newnode, root->height);
+      return assignchild(&root->rchild, carriage->node, root->height);
     } else {
-      return placenode(root->rchild, newnode, comparator);
+      return placenode(root->rchild, carriage->node, comparator);
     }
   }
 
