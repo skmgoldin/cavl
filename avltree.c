@@ -18,21 +18,17 @@ struct Handle *gettree(int (*comparator)(void *, void *), size_t datasize) {
 }
 
 struct Node *addnode(struct Handle *handle, void *data) {
-  struct Node *node = allocnode();
-  node->data = data;
+  struct Node *newnode = allocnode();
+  newnode->data = data;
 
   if(handle->root == NULL) {
-    handle->root = node;
+    handle->root = newnode;
     return handle->root;
   }
 
-  placenode(handle->root, node, handle->comparator);
+  addnodemanager(handle, node);
 
-  if(node->height > handle->anchorheight + 1) {
-    ; // rotation, but how do we tell here whether to do a double or single?
-  }
-
-  return node;
+  return newnode;
 }
 
 /* This of course deallocates the tree for all handles. FYI. */
