@@ -62,3 +62,8 @@ struct Node *singlerotation(struct Carriage *carriage) {
   carriage->anchorheight++;
   return NULL;
 }
+
+struct Node *doublerotation(struct Carriage *carriage) {
+  carriage->anchorheight++;
+  return NULL;
+}

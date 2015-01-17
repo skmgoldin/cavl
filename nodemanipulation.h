@@ -11,9 +11,8 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
 struct Node *assignchild(struct Node **childpointer, struct Node *newnode,
                          int rootheight);
 
-struct Node *singlerotation();
+struct Node *singlerotation(struct Carriage *carriage);
 
-struct Node *doublerotation();
-
+struct Node *doublerotation(struct Carriage *carriage);
 
 #endif /* NODEMANIPULATION_H */
