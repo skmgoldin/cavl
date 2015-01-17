@@ -23,8 +23,11 @@ struct Node {
 struct Carriage {
   struct Node *newnode;
   struct Node *currnode;
+  char currnodevia;
   struct Node *parent;
+  char parentvia;
   struct Node *grandparent;
+  char grandparentvia;
   int anchorheight;
   int currheight;
 };

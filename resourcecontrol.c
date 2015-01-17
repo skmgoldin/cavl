@@ -13,8 +13,11 @@ struct Carriage *alloccarriage() {
   struct Carriage *carriage = malloc(sizeof(struct Carriage));
   carriage->newnode = NULL;
   carriage->currnode = NULL;
+  carriage->currnodevia = 'x';
   carriage->parent = NULL;
+  carriage->parentvia = 'x';
   carriage->grandparent = NULL;
+  carriage->grandparentvia = 'x';
   carriage->anchorheight = 0;
   carriage->currheight = 0;
 
