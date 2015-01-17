@@ -34,6 +34,9 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
     if(root->lchild == NULL) {
       return assignchild(&root->lchild, carriage->node, root->height);
     } else {
+      if(carriage->currheight == carriage->anchorheight + 1) {
+        ;//double rotation
+      }
       return placenode(root->lchild, carriage, comparator);
     }
   }
@@ -42,6 +45,9 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
     if(root->rchild == NULL) {
       return assignchild(&root->rchild, carriage->node, root->height);
     } else {
+      if(carriage->currheight == carriage->anchorheight + 1) {
+        ;//single rotation
+      }
       return placenode(root->rchild, carriage, comparator);
     }
   }
