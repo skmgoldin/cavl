@@ -37,7 +37,7 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
       return assignchild(&root->rchild, carriage->newnode, root->height);
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
-        ;//single rotation
+        return singlerotation(carriage);
       }
       return placenode(root->rchild, carriage, comparator);
     }
@@ -56,8 +56,13 @@ struct Node *assignchild(struct Node **childpointer, struct Node *newnode,
 }
 
 struct Node *singlerotation(struct Carriage *carriage) {
+  
+  carriage->currnode->rchild = carriage->newnode;
+  carriage->currnode->lchild = carriage->parent;
+  carriage->grandparent->
+
   carriage->anchorheight++;
-  return NULL;
+  return carriage->newnode;
 }
 
 struct Node *doublerotation(struct Carriage *carriage) {
