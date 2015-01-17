@@ -1,21 +1,12 @@
 #include "nodemanipulation.h"
 #include "resourcecontrol.h"
 
-// Need a "Rotation Master" function above the node placement function with
-// access to the handle's rootanchor to determine both whether a rotation is
-// necessary and what type. We probably also need to return cmpval from
-// placenode() so we know whether it should be inner or outer.
-
 struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
   carriage->newnode = newnode;
   carriage->anchorheight = handle->anchorheight;
 
   placenode(handle->root, carriage, handle->comparator);
-
-//  if(newnode->height > handle->anchorheight + 1) {
-//    ;//rotate and update anchorheight
-//  }
 
   handle->anchorheight = carriage->anchorheight;
 
