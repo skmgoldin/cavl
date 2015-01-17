@@ -15,4 +15,7 @@ struct Node *singlerotation(struct Carriage *carriage);
 
 struct Node *doublerotation(struct Carriage *carriage);
 
+struct Carriage *updatecarriage(struct Carriage *carriage,
+                                struct Node *currnode);
+
 #endif /* NODEMANIPULATION_H */

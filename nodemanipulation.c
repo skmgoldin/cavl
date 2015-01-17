@@ -26,7 +26,7 @@ struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
 struct Node *placenode(struct Node *root, struct Carriage *carriage, 
                        int (*comparator)(void *, void *)) {
 
-  carriage->currheight++;
+  carriage = updatecarriage(carriage, root);
 
   int cmpval = (*comparator)(root->data, carriage->newnode->data);
 
@@ -72,4 +72,16 @@ struct Node *singlerotation(struct Carriage *carriage) {
 struct Node *doublerotation(struct Carriage *carriage) {
   carriage->anchorheight++;
   return NULL;
+}
+
+struct Carriage *updatecarriage(struct Carriage *carriage,
+                                struct Node *currnode) {
+ 
+  carriage->grandparent = carriage->parent;
+  carriage->parent = carriage->currnode;
+  carriage->currnode = currnode;
+
+  carriage->currheight++;
+  
+  return carriage;
 }
