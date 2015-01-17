@@ -14,7 +14,7 @@ struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
   return newnode;
 }
 
-struct Node *placenode(struct Node *root, struct Carriage *carriage, 
+struct Carriage *placenode(struct Node *root, struct Carriage *carriage, 
                        int (*comparator)(void *, void *)) {
 
   carriage = updatecarriage(carriage, root);
@@ -23,7 +23,7 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      return assignchild(&root->lchild, carriage->newnode, root->height);
+      return assignchild(&root->lchild, carriage);
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
         ;//double rotation
@@ -35,7 +35,7 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      return assignchild(&root->rchild, carriage->newnode, root->height);
+      return assignchild(&root->rchild, carriage);
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
         return singlerotation(carriage);
@@ -49,27 +49,31 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
   return NULL;
 }
 
-struct Node *assignchild(struct Node **childpointer, struct Node *newnode,
-                         int rootheight) {
+struct Carriage *assignchild(struct Node **childpointer,
+                             struct Carriage *carriage) {
 
-    *childpointer = newnode;
-    newnode->height = rootheight + 1;
-    return newnode;
+    *childpointer = carriage->newnode;
+    return carriage;
 }
 
-struct Node *singlerotation(struct Carriage *carriage) {
+struct Carriage *singlerotation(struct Carriage *carriage) {
   
   carriage->currnode->rchild = carriage->newnode;
   carriage->currnode->lchild = carriage->parent;
-//  carriage->grandparent->
+
+  if(carriage->parentvia == 'l') {
+    carriage->grandparent->lchild = carriage->currnode;
+  } else if(carriage->parentvia == 'r') {
+    carriage->grandparent->rchild = carriage->currnode;
+  }
 
   carriage->anchorheight++;
-  return carriage->newnode;
+  return carriage;
 }
 
-struct Node *doublerotation(struct Carriage *carriage) {
+struct Carriage *doublerotation(struct Carriage *carriage) {
   carriage->anchorheight++;
-  return NULL;
+  return carriage;
 }
 
 struct Carriage *updatecarriage(struct Carriage *carriage,

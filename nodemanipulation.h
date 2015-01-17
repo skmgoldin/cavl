@@ -5,15 +5,15 @@
 
 struct Node *addnodemanager(struct Handle *handle, struct Node *newnode);
 
-struct Node *placenode(struct Node *root, struct Carriage *carriage,
+struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
                        int (*comparator)(void *, void *));
 
-struct Node *assignchild(struct Node **childpointer, struct Node *newnode,
-                         int rootheight);
+struct Carriage *assignchild(struct Node **childpointer,
+                             struct Carriage *carriage);
 
-struct Node *singlerotation(struct Carriage *carriage);
+struct Carriage *singlerotation(struct Carriage *carriage);
 
-struct Node *doublerotation(struct Carriage *carriage);
+struct Carriage *doublerotation(struct Carriage *carriage);
 
 struct Carriage *updatecarriage(struct Carriage *carriage,
                                 struct Node *currnode);
