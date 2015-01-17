@@ -8,7 +8,7 @@
 
 struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
-  carriage->node = newnode;
+  carriage->newnode = newnode;
   carriage->anchorheight = handle->anchorheight;
 
   placenode(handle->root, carriage, handle->comparator);
@@ -28,11 +28,11 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
 
   carriage->currheight++;
 
-  int cmpval = (*comparator)(root->data, carriage->node->data);
+  int cmpval = (*comparator)(root->data, carriage->newnode->data);
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      return assignchild(&root->lchild, carriage->node, root->height);
+      return assignchild(&root->lchild, carriage->newnode, root->height);
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
         ;//double rotation
@@ -43,7 +43,7 @@ struct Node *placenode(struct Node *root, struct Carriage *carriage,
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      return assignchild(&root->rchild, carriage->node, root->height);
+      return assignchild(&root->rchild, carriage->newnode, root->height);
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
         ;//single rotation

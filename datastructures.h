@@ -21,8 +21,9 @@ struct Node {
 };
 
 struct Carriage {
-  struct Node *node;
-  int rotationstatus;
+  struct Node *newnode;
+  struct Node *currnode;
+  struct Node *parentnode;
   int anchorheight;
   int currheight;
 };
