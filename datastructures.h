@@ -29,6 +29,7 @@ struct Carriage {
   char grandparentvia;
   int anchorheight;
   int currheight;
+  int rotationstatus;
 };
 
 #endif /* DATASTRUCTURES_H */

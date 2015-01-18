@@ -1,11 +1,14 @@
 #include "resourcecontrol.h"
+#include <stdio.h> //for test printing
 
-struct Handle *allochandle() {
-  struct Handle *handle = malloc(sizeof(struct Handle));
+struct Handle *allochandle(struct Handle *handle) {
+  printf("%s%p\n", "Handle trace: ", handle);
+  handle = malloc(sizeof(struct Handle));
   handle->comparator = NULL;
   handle->root = NULL;
   handle->datasize = 0;
   handle->anchorheight = 0;
+  printf("%s%p\n", "Handle trace: ", handle);
   return handle;
 }
 
@@ -20,6 +23,7 @@ struct Carriage *alloccarriage() {
   carriage->grandparentvia = 'x';
   carriage->anchorheight = 0;
   carriage->currheight = 0;
+  carriage->rotationstatus = 0;
 
   return carriage;
 }
