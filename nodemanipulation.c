@@ -7,7 +7,7 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   carriage->newnode = newnode;
   carriage->anchorheight = handle->anchorheight;
 
-  placenode(handle->root, carriage, handle->comparator);
+  carriage = placenode(handle->root, carriage, handle->comparator);
 
   if(carriage->rotationstatus == 1) {
     printf("%s\n", "Reassigning handle");
@@ -30,29 +30,27 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      root->lchild = carriage->newnode;
+      carriage->currnode->lchild = carriage->newnode;
       return carriage;
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
         ;//double rotation
       }
       carriage->currnodevia = 'l';
-      return placenode(root->lchild, carriage, comparator);
+      return carriage = placenode(root->lchild, carriage, comparator);
     }
   }
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      printf("%s%p\n", "Child pointer trace: ", root->rchild);
-      root->rchild = carriage->newnode;
-      printf("%s%p\n", "Child pointer trace: ", root->rchild);
+      carriage->currnode->rchild = carriage->newnode;
       return carriage;
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
-        return singlerotation(carriage);
+        return carriage = singlerotation(carriage);
       }
       carriage->currnodevia = 'r';
-      return placenode(root->rchild, carriage, comparator);
+      return carriage = placenode(root->rchild, carriage, comparator);
     }
   }
 
@@ -63,10 +61,12 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 struct Carriage *singlerotation(struct Carriage *carriage) {
   
   printf("%s\n", "single rotation.");
-  carriage = updatecarriage(carriage, carriage->currnode); // WRONG, need to feed it a better input
+//  carriage = updatecarriage(carriage, carriage->currnode); // WRONG, need to feed it a better input (??)
 
   carriage->currnode->rchild = carriage->newnode;
   carriage->currnode->lchild = carriage->parent;
+
+  carriage->parent->rchild = NULL;
 
   if(carriage->parentvia == 'l') {
     carriage->grandparent->lchild = carriage->currnode;
@@ -86,12 +86,14 @@ struct Carriage *doublerotation(struct Carriage *carriage) {
 
 struct Carriage *updatecarriage(struct Carriage *carriage,
                                 struct Node *currnode) {
+  printf("%s\n", "update carriage");
  
   carriage->grandparent = carriage->parent;
-  carriage->grandparentvia = carriage->parentvia;
   carriage->parent = carriage->currnode;
-  carriage->parentvia = carriage->currnodevia;
   carriage->currnode = currnode;
+
+  carriage->grandparentvia = carriage->parentvia;
+  carriage->parentvia = carriage->currnodevia;
 
   carriage->currheight++;
   

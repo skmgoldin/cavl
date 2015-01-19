@@ -13,18 +13,25 @@ int intcomparator(void *rootvalue, void *newvalue) {
   return 1; // Never happens
 }
 
+int intprinter(void *toprint) {
+  int asint = *(int *) toprint;
+  printf("%d\n", asint);
+  return 1;
+}
+
 int main(int argc, char **argv) {
   
   printf("%s\n", "Building tree");
-  struct Handle *tree = gettree(&intcomparator, sizeof(int));
+  struct Handle *handle = gettree(handle, &intcomparator, &intprinter,
+                                  sizeof(int));
 
   for(int x = 1; x < argc; x++) {
-    addnode(tree, (void *) *(argv + x)); 
+    handle = addnode(handle, (void *) *(argv + x)); 
   }
   printf("%s\n", "Tree built.");
 
   printf("%s\n", "Deallocating tree.");
-  killtree(tree);
+  killtree(handle);
   printf("%s\n", "Tree deallocated.");
 
   return 1;

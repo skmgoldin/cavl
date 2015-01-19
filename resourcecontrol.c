@@ -2,13 +2,11 @@
 #include <stdio.h> //for test printing
 
 struct Handle *allochandle(struct Handle *handle) {
-  printf("%s%p\n", "Handle trace: ", handle);
   handle = malloc(sizeof(struct Handle));
   handle->comparator = NULL;
   handle->root = NULL;
   handle->datasize = 0;
-  handle->anchorheight = 0;
-  printf("%s%p\n", "Handle trace: ", handle);
+  handle->anchorheight = 1;
   return handle;
 }
 
@@ -37,7 +35,7 @@ struct Node *allocnode() {
 }
 
 int deallocnode(struct Node *node) {
-   
+  printf("%s\n", (char *) node->data); 
   if(node->lchild != NULL) {
     deallocnode(node->lchild);
     node->lchild = NULL;

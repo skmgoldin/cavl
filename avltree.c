@@ -10,25 +10,29 @@
  * the tree's node->data pointers need to be deallocated or not.
  */
 
-struct Handle *gettree(int (*comparator)(void *, void *), size_t datasize) {
-  struct Handle *handle = allochandle();
+struct Handle *gettree(struct Handle *handle,
+                       int (*comparator)(void *, void *),
+                       int (*printer)(void *), size_t datasize) {
+  handle = allochandle(handle);
   handle->comparator = comparator;
+  handle->printer = printer;
   handle->datasize = datasize;
   return handle;
 }
 
-struct Node *addnode(struct Handle *handle, void *data) {
+struct Handle *addnode(struct Handle *handle, void *data) {
   struct Node *newnode = allocnode();
   newnode->data = data;
+  printf("%s\n", "addnode()");
 
   if(handle->root == NULL) {
     handle->root = newnode;
-    return handle->root;
+    return handle;
   }
 
-  addnodemanager(handle, newnode);
+  handle = addnodemanager(handle, newnode);
 
-  return newnode;
+  return handle;
 }
 
 /* This of course deallocates the tree for all handles. FYI. */

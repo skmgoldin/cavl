@@ -6,6 +6,7 @@
 struct Handle {
   struct Node *root;
   int (*comparator)(void *, void *); 
+  int (*printer)(void *);
   size_t datasize;
   /* Rotate any node that comes back 2 greater than anchor height, update anchor
    * height after the rotation.
