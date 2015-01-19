@@ -27,7 +27,7 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
   if(cmpval < 0 || cmpval == 0) {
     if(carriage->currheight == carriage->anchorheight + 1) {
-      return carriage; // = doublerotation(carriage);
+      return carriage = doublerotation(carriage);
     } else {
       if(root->lchild == NULL) {
         carriage->currnode->lchild = carriage->newnode;
@@ -57,10 +57,13 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
 struct Carriage *singlerotation(struct Carriage *carriage) {
   
-//  carriage = updatecarriage(carriage, carriage->currnode); // WRONG, need to feed it a better input (??)
+  //  Wait... will this work for outside insertions on the left side??
 
-  carriage->currnode->rchild = carriage->newnode;
-  carriage->currnode->lchild = carriage->parent;
+  // Should this if envelope the grandparent stuff too?
+  if(carriage->currnodevia == 'r') {
+    carriage->currnode->rchild = carriage->newnode;
+    carriage->currnode->lchild = carriage->parent;
+  }
 
   carriage->parent->rchild = NULL;
 
@@ -78,7 +81,6 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
 }
 
 struct Carriage *doublerotation(struct Carriage *carriage) {
-  carriage->anchorheight++;
   return carriage;
 }
 
