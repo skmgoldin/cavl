@@ -10,6 +10,8 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
 
   if(carriage->rotationstatus == 1 && carriage->currheight == 2) {
     handle->root = carriage->currnode;
+  } else if(carriage->rotationstatus == 2 && carriage->currheight == 2) {
+    handle->root = carriage->newnode;
   }
 
   handle->anchorheight = carriage->anchorheight;
