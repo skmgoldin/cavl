@@ -27,7 +27,11 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
   if(cmpval < 0 || cmpval == 0) {
     if(carriage->currheight == carriage->anchorheight + 1) {
-      return carriage = doublerotation(carriage);
+      if(carriage->currnodevia == 'r') {
+        return carriage = doublerotation(carriage);
+      } else if(carriage->currnodevia == 'l') {
+        return carriage = singlerotation(carriage);
+      }
     } else {
       if(root->lchild == NULL) {
         carriage->currnode->lchild = carriage->newnode;
@@ -40,7 +44,11 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
   else if(cmpval > 0) {
     if(carriage->currheight == carriage->anchorheight + 1) {
-      return carriage = singlerotation(carriage);
+      if(carriage->currnodevia == 'r') {
+        return carriage = singlerotation(carriage);
+      } else if(carriage->currnodevia == 'l') {
+        return carriage = doublerotation(carriage);
+      }
     } else {
       if(root->rchild == NULL) {
         carriage->currnode->rchild = carriage->newnode;
