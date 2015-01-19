@@ -97,8 +97,8 @@ struct Carriage *doublerotation(struct Carriage *carriage) {
     carriage->newnode->lchild = carriage->parent;
     carriage->parent->rchild = NULL;
   } else if(carriage->currnodevia == 'l') {
-    carriage->newnode->lchild = carriage->currnode;
     carriage->newnode->rchild = carriage->parent;
+    carriage->newnode->lchild = carriage->currnode;
     carriage->parent->lchild = NULL;
   }
 
