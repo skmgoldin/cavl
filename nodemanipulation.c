@@ -1,6 +1,5 @@
 #include "nodemanipulation.h"
 #include "resourcecontrol.h"
-#include <stdio.h> //only for test printers.
 
 struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
@@ -10,7 +9,6 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   carriage = placenode(handle->root, carriage, handle->comparator);
 
   if(carriage->rotationstatus == 1 && carriage->currheight == 2) {
-    printf("%s\n", "Reassigning handle");
     handle->root = carriage->currnode;
   }
 
@@ -59,7 +57,6 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
 struct Carriage *singlerotation(struct Carriage *carriage) {
   
-  printf("%s\n", "single rotation.");
 //  carriage = updatecarriage(carriage, carriage->currnode); // WRONG, need to feed it a better input (??)
 
   carriage->currnode->rchild = carriage->newnode;
@@ -67,7 +64,6 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
 
   carriage->parent->rchild = NULL;
 
-  printf("%s\n", "hi.");
   if(carriage->currheight > 2) {
     if(carriage->parentvia == 'l') {
       carriage->grandparent->lchild = carriage->currnode;
@@ -76,7 +72,6 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
     }
   }
 
-  printf("%s\n", "hey.");
   carriage->anchorheight++;
   carriage->rotationstatus = 1;
   return carriage;
@@ -89,7 +84,6 @@ struct Carriage *doublerotation(struct Carriage *carriage) {
 
 struct Carriage *updatecarriage(struct Carriage *carriage,
                                 struct Node *currnode) {
-  printf("%s\n", "update carriage");
  
   carriage->grandparent = carriage->parent;
   carriage->parent = carriage->currnode;
