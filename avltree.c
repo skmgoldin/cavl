@@ -21,7 +21,6 @@ struct Handle *gettree(struct Handle *handle,
 struct Handle *addnode(struct Handle *handle, void *data) {
   struct Node *newnode = allocnode();
   newnode->data = data;
-  printf("%s\n", "addnode()");
 
   if(handle->root == NULL) {
     handle->root = newnode;

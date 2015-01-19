@@ -1,5 +1,6 @@
 #include "nodemanipulation.h"
 #include "resourcecontrol.h"
+#include <stdio.h> //test printing only
 
 struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
@@ -67,6 +68,8 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
 struct Carriage *singlerotation(struct Carriage *carriage) {
   
+  printf("%s%c%s\n", "Single rotation from ", carriage->currnodevia, " side.");
+
   if(carriage->currnodevia == 'r') {
     carriage->currnode->rchild = carriage->newnode;
     carriage->currnode->lchild = carriage->parent;
@@ -91,6 +94,8 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
 }
 
 struct Carriage *doublerotation(struct Carriage *carriage) {
+
+  printf("%s%c%s\n", "Double rotation from ", carriage->currnodevia, " side.");
   
   if(carriage->currnodevia == 'r') {
     carriage->newnode->rchild = carriage->currnode;
