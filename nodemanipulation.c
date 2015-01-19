@@ -2,17 +2,23 @@
 #include "resourcecontrol.h"
 #include <stdio.h> //only for test printers.
 
-struct Node *addnodemanager(struct Handle *handle, struct Node *newnode) {
+struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
   carriage->newnode = newnode;
   carriage->anchorheight = handle->anchorheight;
 
   placenode(handle->root, carriage, handle->comparator);
 
+  if(carriage->rotationstatus == 1) {
+    printf("%s\n", "Reassigning handle");
+    handle->root = carriage->currnode;
+  }
+
   handle->anchorheight = carriage->anchorheight;
+  printf("%s%p\n", "Handle trace: ", handle);
 
   free(carriage);
-  return newnode;
+  return handle;
 }
 
 struct Carriage *placenode(struct Node *root, struct Carriage *carriage, 
@@ -24,7 +30,7 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
   if(cmpval < 0 || cmpval == 0) {
     if(root->lchild == NULL) {
-      assignchild(&root->lchild, carriage->newnode);
+      root->lchild = carriage->newnode;
       return carriage;
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
@@ -37,7 +43,9 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
   
   else if(cmpval > 0) {
     if(root->rchild == NULL) {
-      assignchild(&root->rchild, carriage->newnode);
+      printf("%s%p\n", "Child pointer trace: ", root->rchild);
+      root->rchild = carriage->newnode;
+      printf("%s%p\n", "Child pointer trace: ", root->rchild);
       return carriage;
     } else {
       if(carriage->currheight == carriage->anchorheight + 1) {
@@ -52,38 +60,22 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
   return NULL;
 }
 
-//struct Carriage *assignchild(struct Node **childpointer,
-//                             struct Carriage *carriage) {
-//
-//    *childpointer = carriage->newnode;
-//    return carriage;
-//}
-
-struct Node *assignchild(struct Node **childpointer,
-                             struct Node *node) {
-
-    *childpointer = node;
-    return node;
-}
-
 struct Carriage *singlerotation(struct Carriage *carriage) {
   
   printf("%s\n", "single rotation.");
+  carriage = updatecarriage(carriage, carriage->currnode); // WRONG, need to feed it a better input
 
-  assignchild(&carriage->currnode->rchild, carriage->newnode);
-  assignchild(&carriage->currnode->lchild, carriage->parent);
-  //carriage->currnode->rchild = carriage->newnode;
-  //carriage->currnode->lchild = carriage->parent;
+  carriage->currnode->rchild = carriage->newnode;
+  carriage->currnode->lchild = carriage->parent;
 
   if(carriage->parentvia == 'l') {
-    assignchild(&carriage->grandparent->lchild, carriage->currnode);
-   // carriage->grandparent->lchild = carriage->currnode;
+    carriage->grandparent->lchild = carriage->currnode;
   } else if(carriage->parentvia == 'r') {
-    assignchild(&carriage->currnode->rchild, carriage->currnode);
-    //carriage->grandparent->rchild = carriage->currnode;
+    carriage->grandparent->rchild = carriage->currnode;
   }
 
   carriage->anchorheight++;
+  carriage->rotationstatus = 1;
   return carriage;
 }
 
