@@ -63,6 +63,9 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
   if(carriage->currnodevia == 'r') {
     carriage->currnode->rchild = carriage->newnode;
     carriage->currnode->lchild = carriage->parent;
+  } else if(carriage->currnodevia == 'l') {
+    carriage->currnode->rchild = carriage->parent;
+    carriage->currnode->lchild = carriage->newnode;
   }
 
   carriage->parent->rchild = NULL;
