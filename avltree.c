@@ -25,6 +25,7 @@ struct Handle *addnode(struct Handle *handle, void *data) {
   if(handle->root == NULL) {
     handle->root = newnode;
     handle->anchorheight++;
+    handle->interiornodes++;
     return handle;
   }
 

@@ -9,13 +9,19 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
 
   carriage = placenode(handle->root, carriage, handle->comparator);
 
+  handle->leaves++;
+
   if(carriage->rotationstatus == 1 && carriage->currheight == 2) {
     handle->root = carriage->currnode;
   } else if(carriage->rotationstatus == 2 && carriage->currheight == 2) {
     handle->root = carriage->newnode;
   }
 
-  handle->anchorheight = carriage->anchorheight;
+  if(handle->leaves == handle->interiornodes + 1) {
+    handle->anchorheight++;
+    handle->interiornodes += handle->leaves;
+    handle->leaves = 0;
+  }
 
   free(carriage);
   return handle;
