@@ -8,6 +8,8 @@ struct Handle *allochandle() {
 
   handle->comparator = NULL;
   handle->datasize = 0;
+  handle->interiornodes = 0;
+  handle->leaves = 0;
   handle->anchorheight = 0;
 
   return handle;

@@ -11,6 +11,8 @@ struct Handle {
    * height after the rotation.
    */
   int anchorheight;
+  int interiornodes;
+  int leaves;
 };
 
 struct Node {
