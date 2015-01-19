@@ -5,6 +5,7 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   struct Carriage *carriage = alloccarriage();
   carriage->newnode = newnode;
   carriage->anchorheight = handle->anchorheight;
+  carriage->printer = handle->printer;
 
   carriage = placenode(handle->root, carriage, handle->comparator);
 

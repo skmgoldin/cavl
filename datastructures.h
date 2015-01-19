@@ -31,6 +31,8 @@ struct Carriage {
   int anchorheight;
   int currheight;
   int rotationstatus;
+
+  int (*printer)(void *);
 };
 
 #endif /* DATASTRUCTURES_H */
