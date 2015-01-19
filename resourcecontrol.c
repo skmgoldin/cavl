@@ -7,6 +7,7 @@ struct Handle *allochandle() {
   handle->root = NULL;
 
   handle->comparator = NULL;
+  handle->printer = NULL;
   handle->datasize = 0;
   handle->anchorheight = 0;
 
@@ -29,6 +30,8 @@ struct Carriage *alloccarriage() {
   carriage->currheight = 0;
 
   carriage->rotationstatus = 0;
+
+  carriage->printer = NULL;
 
   return carriage;
 }
