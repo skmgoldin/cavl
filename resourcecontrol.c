@@ -1,8 +1,8 @@
 #include "resourcecontrol.h"
 #include <stdio.h> //for test printing
 
-struct Handle *allochandle(struct Handle *handle) {
-  handle = malloc(sizeof(struct Handle));
+struct Handle *allochandle() {
+  struct Handle *handle = malloc(sizeof(struct Handle));
 
   handle->root = NULL;
 

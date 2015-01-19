@@ -13,7 +13,7 @@
 struct Handle *gettree(struct Handle *handle,
                        int (*comparator)(void *, void *),
                        int (*printer)(void *), size_t datasize) {
-  handle = allochandle(handle);
+  handle = allochandle();
   handle->comparator = comparator;
   handle->printer = printer;
   handle->datasize = datasize;
