@@ -89,6 +89,27 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
 }
 
 struct Carriage *doublerotation(struct Carriage *carriage) {
+  
+  if(carriage->currnodevia == 'r') {
+    carriage->newnode->rchild = carriage->currnode;
+    carriage->newnode->lchild = carriage->parent;
+    carriage->parent->rchild = NULL;
+  } else if(carriage->currnodevia == 'l') {
+    carriage->newnode->lchild = carriage->currnode;
+    carriage->newnode->rchild = carriage->parent;
+    carriage->parent->lchild = NULL;
+  }
+
+  if(carriage->currheight > 2) {
+    if(carriage->parentvia == 'l') {
+      carriage->grandparent->lchild = carriage->newnode;
+    } else if(carriage->parentvia == 'r') {
+      carriage->grandparent->rchild = carriage->newnode;
+    }
+  }
+
+  carriage->anchorheight++;
+  carriage->rotationstatus = 2;
   return carriage;
 }
 
