@@ -57,9 +57,6 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
 
 struct Carriage *singlerotation(struct Carriage *carriage) {
   
-  //  Wait... will this work for outside insertions on the left side??
-
-  // Should this if envelope the grandparent stuff too?
   if(carriage->currnodevia == 'r') {
     carriage->currnode->rchild = carriage->newnode;
     carriage->currnode->lchild = carriage->parent;
