@@ -5,8 +5,7 @@
 
 /* Public Functions */
 struct Handle *gettree(struct Handle *handle,
-                       int (*comparator)(void *, void *),
-                       int (*printer)(void *), size_t datasize);
+                       int (*comparator)(void *, void *), size_t datasize);
 
 struct Handle *addnode(struct Handle *handle, void *data);
 

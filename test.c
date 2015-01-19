@@ -13,17 +13,10 @@ int intcomparator(void *rootvalue, void *newvalue) {
   return 1; // Never happens
 }
 
-int stringprinter(void *toprint) {
-  char *print = (char *) toprint;
-  printf("%s\n", print);
-  return 1;
-}
-
 int main(int argc, char **argv) {
   
   printf("%s\n", "Building tree");
-  struct Handle *handle = gettree(handle, &intcomparator, &stringprinter,
-                                  sizeof(int));
+  struct Handle *handle = gettree(handle, &intcomparator, sizeof(int));
 
   for(int x = 1; x < argc; x++) {
     handle = addnode(handle, (void *) *(argv + x)); 
