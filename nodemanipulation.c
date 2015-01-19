@@ -28,18 +28,18 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
   int cmpval = (*comparator)(root->data, carriage->newnode->data);
 
   if(cmpval < 0 || cmpval == 0) {
-    if(root->lchild == NULL) {
-      carriage->currnode->lchild = carriage->newnode;
-      return carriage;
+    if(carriage->currheight == carriage->anchorheight + 1) {
+      return carriage; // = doublerotation(carriage);
     } else {
-      if(carriage->currheight == carriage->anchorheight + 1) {
-        ;//double rotation
-      }
+      if(root->lchild == NULL) {
+        carriage->currnode->lchild = carriage->newnode;
+        return carriage;
+      } 
       carriage->currnodevia = 'l';
       return carriage = placenode(root->lchild, carriage, comparator);
     }
   }
-  
+
   else if(cmpval > 0) {
     if(carriage->currheight == carriage->anchorheight + 1) {
       return carriage = singlerotation(carriage);
