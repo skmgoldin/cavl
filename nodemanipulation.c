@@ -9,13 +9,12 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
 
   carriage = placenode(handle->root, carriage, handle->comparator);
 
-  if(carriage->rotationstatus == 1) {
+  if(carriage->rotationstatus == 1 && carriage->currheight == 2) {
     printf("%s\n", "Reassigning handle");
     handle->root = carriage->currnode;
   }
 
   handle->anchorheight = carriage->anchorheight;
-  printf("%s%p\n", "Handle trace: ", handle);
 
   free(carriage);
   return handle;
@@ -42,13 +41,13 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
   }
   
   else if(cmpval > 0) {
-    if(root->rchild == NULL) {
-      carriage->currnode->rchild = carriage->newnode;
-      return carriage;
+    if(carriage->currheight == carriage->anchorheight + 1) {
+      return carriage = singlerotation(carriage);
     } else {
-      if(carriage->currheight == carriage->anchorheight + 1) {
-        return carriage = singlerotation(carriage);
-      }
+      if(root->rchild == NULL) {
+        carriage->currnode->rchild = carriage->newnode;
+        return carriage;
+      } 
       carriage->currnodevia = 'r';
       return carriage = placenode(root->rchild, carriage, comparator);
     }
@@ -68,12 +67,16 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
 
   carriage->parent->rchild = NULL;
 
-  if(carriage->parentvia == 'l') {
-    carriage->grandparent->lchild = carriage->currnode;
-  } else if(carriage->parentvia == 'r') {
-    carriage->grandparent->rchild = carriage->currnode;
+  printf("%s\n", "hi.");
+  if(carriage->currheight > 2) {
+    if(carriage->parentvia == 'l') {
+      carriage->grandparent->lchild = carriage->currnode;
+    } else if(carriage->parentvia == 'r') {
+      carriage->grandparent->rchild = carriage->currnode;
+    }
   }
 
+  printf("%s\n", "hey.");
   carriage->anchorheight++;
   carriage->rotationstatus = 1;
   return carriage;
