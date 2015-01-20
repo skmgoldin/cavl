@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
   struct Handle *handle = gettree(handle, &intcomparator, sizeof(int));
 
   for(int x = 1; x < argc; x++) {
-    addnode(handle, (void *) *(argv + x)); 
+    handle = addnode(handle, (void *) *(argv + x)); 
   }
   printf("%s\n", "Tree built.");
 
