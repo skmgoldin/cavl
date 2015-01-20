@@ -27,6 +27,8 @@ struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode) {
   return handle;
 }
 
+
+
 struct Carriage *placenode(struct Node *root, struct Carriage *carriage, 
                        int (*comparator)(void *, void *)) {
 
@@ -35,12 +37,8 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
   int cmpval = (*comparator)(root->data, carriage->newnode->data);
 
   if(cmpval < 0 || cmpval == 0) {
-    if(carriage->currheight == carriage->anchorheight + 1) {
-      if(carriage->currnodevia == 'r') {
-        return carriage = doublerotation(carriage);
-      } else if(carriage->currnodevia == 'l') {
-        return carriage = singlerotation(carriage);
-      }
+    if(rotationnecessary(carriage, carriage->currnode->lchild)) {
+      return carriage = rotationhandler(carriage);
     } else {
       if(root->lchild == NULL) {
         carriage->currnode->lchild = carriage->newnode;
@@ -52,12 +50,8 @@ struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
   }
 
   else if(cmpval > 0) {
-    if(carriage->currheight == carriage->anchorheight + 1) {
-      if(carriage->currnodevia == 'r') {
-        return carriage = singlerotation(carriage);
-      } else if(carriage->currnodevia == 'l') {
-        return carriage = doublerotation(carriage);
-      }
+    if(rotationnecessary(carriage, carriage->currnode->rchild)) {
+      return carriage = rotationhandler(carriage);
     } else {
       if(root->rchild == NULL) {
         carriage->currnode->rchild = carriage->newnode;
@@ -77,6 +71,9 @@ struct Carriage *singlerotation(struct Carriage *carriage) {
   printf("%s%c%s\n", "Single rotation from ", carriage->currnodevia, " side.");
 
   if(carriage->currnodevia == 'r') {
+
+
+
     carriage->currnode->rchild = carriage->newnode;
     carriage->currnode->lchild = carriage->parent;
     carriage->parent->rchild = NULL;
@@ -129,14 +126,36 @@ struct Carriage *doublerotation(struct Carriage *carriage) {
 struct Carriage *updatecarriage(struct Carriage *carriage,
                                 struct Node *currnode) {
  
+  carriage->greatgrandparent = carriage->grandparent;
   carriage->grandparent = carriage->parent;
   carriage->parent = carriage->currnode;
   carriage->currnode = currnode;
 
+  carriage->greatgrandparentvia = carriage->grandparentvia;
   carriage->grandparentvia = carriage->parentvia;
   carriage->parentvia = carriage->currnodevia;
 
   carriage->currheight++;
   
+  return carriage;
+}
+
+int rotationnecessary(struct Carriage *carriage, struct Node *childptr) {
+
+  if(carriage->currheight == carriage->anchorheight && childptr != NULL) {
+    return 1; 
+  }
+
+  return 0;
+}
+
+struct Carriage *rotationhandler(struct Carriage *carriage) {
+
+  if(carriage->currnodevia == 'r') {
+    return carriage = doublerotation(carriage);
+  } else if(carriage->currnodevia == 'l') {
+    return carriage = singlerotation(carriage);
+  }
+
   return carriage;
 }
