@@ -3,6 +3,15 @@
 
 #include "datastructures.h"
 
+struct Node *balance(struct Node *node);
+
+int balancefactor(struct Node *node);
+
+int height(struct Node *node);
+
+
+
+
 struct Handle *addnodemanager(struct Handle *handle, struct Node *newnode);
 
 struct Carriage *placenode(struct Node *root, struct Carriage *carriage,
