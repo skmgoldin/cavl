@@ -6,7 +6,8 @@
 
 struct Node *balance(struct Node *root) {
 
-  int bf = balancefactor(root);
+  double bf = balancefactor(root);
+  printf("%s%s%s%0.f\n", "Balance Factor of node ", root->data, " is ", bf);
 
   /* Tree is balanced. */
   if(bf == 0 || bf == 1 || bf == -1) {
@@ -15,14 +16,14 @@ struct Node *balance(struct Node *root) {
 
   /* Tree is left-heavy. */
   else if(bf == 2) {
-    int lbf = balancefactor(root->lchild);
+    double lbf = balancefactor(root->lchild);
     if(lbf == 1) {return llrotation(root);}
     else if(lbf == -1) {return lrrotation(root);}
   }
 
   /* Tree is right-heavy. */
   else if(bf == -2) {
-    int rbf = balancefactor(root->rchild);
+    double rbf = balancefactor(root->rchild);
     if(rbf == 1) {return rlrotation(root);}
     else if(rbf == -1) {return rrrotation(root);}
   }
@@ -31,18 +32,21 @@ struct Node *balance(struct Node *root) {
   exit(1);
 }
 
-int balancefactor(struct Node *root) {
+double balancefactor(struct Node *root) {
 
   if(root == NULL) {return 0;}
 
   return height(root->lchild) - height(root->rchild);
 }
 
-int height(struct Node *node) {
+double height(struct Node *node) {
+
 
   if(node == NULL) {
-    return 0;
+    return -1;
   }
+
+  printf("%s%s%s%0.f\n", "Height of node ", node->data, " is ", fmax(height(node->lchild), height(node->rchild)) + 1);
 
   return fmax(height(node->lchild), height(node->rchild)) + 1;
 }
