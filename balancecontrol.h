@@ -5,8 +5,8 @@
 
 struct Node *balance(struct Node *root);
 
-int balancefactor(struct Node *root);
+double balancefactor(struct Node *root);
 
-int height(struct Node *node);
+double height(struct Node *node);
 
 #endif /* NODEMANIPULATION_H */
