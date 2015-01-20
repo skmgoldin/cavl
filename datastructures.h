@@ -29,6 +29,8 @@ struct Carriage {
   char parentvia;
   struct Node *grandparent;
   char grandparentvia;
+  struct Node *greatgrandparent;
+  char greatgrandparentvia;
   int anchorheight;
   int currheight;
   int rotationstatus;
