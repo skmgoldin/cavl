@@ -1,16 +1,12 @@
 #include "resourcecontrol.h"
 #include <stdio.h> //for test printing
 
-struct Handle *allochandle() {
-  struct Handle *handle = malloc(sizeof(struct Handle));
+struct Handle allochandle(struct Handle handle) {
 
-  handle->root = NULL;
+  handle.root = NULL;
 
-  handle->comparator = NULL;
-  handle->datasize = 0;
-  handle->interiornodes = 0;
-  handle->leaves = 0;
-  handle->anchorheight = 0;
+  handle.comparator = NULL;
+  handle.datasize = 0;
 
   return handle;
 }

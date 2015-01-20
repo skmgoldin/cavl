@@ -3,7 +3,7 @@
 
 #include "datastructures.h"
 
-struct Handle *allochandle();
+struct Handle allochandle(struct Handle handle);
 
 struct Carriage *alloccarriage();
 

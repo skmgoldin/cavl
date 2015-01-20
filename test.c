@@ -16,15 +16,15 @@ int intcomparator(void *rootvalue, void *newvalue) {
 int main(int argc, char **argv) {
   
   printf("%s\n", "Building tree");
-  struct Handle *handle = gettree(handle, &intcomparator, sizeof(int));
+  struct Handle handle = gettree(handle, &intcomparator, sizeof(int));
 
   for(int x = 1; x < argc; x++) {
-    handle = addnode(handle, (void *) *(argv + x)); 
+    addnode(&handle, (void *) *(argv + x)); 
   }
   printf("%s\n", "Tree built.");
 
   printf("%s\n", "Deallocating tree.");
-  killtree(handle);
+  killtree(&handle);
   printf("%s\n", "Tree deallocated.");
 
   return 1;
