@@ -12,7 +12,7 @@ echo --------------------
 make all
 
 echo --------------------
-echo RS single rotation
+echo RR rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 1 2 3
@@ -20,7 +20,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo LS single rotation
+echo LL rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 3 2 1
@@ -28,7 +28,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo RS double rotation
+echo RL rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 1 3 2
@@ -36,7 +36,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo LS double rotation
+echo LR rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 5 3 4
@@ -44,7 +44,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo RS single rotation, RS double rotation
+echo RR rotation, RL rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 1 2 3 5 4
@@ -52,7 +52,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo RS double rotation, RS single rotation
+echo RL rotation, RR rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 1 3 2 4 5 
@@ -60,7 +60,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo RS single rotation, RS single rotation
+echo RR rotation, RR rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 1 2 3 4 5
@@ -68,7 +68,7 @@ eval $PRINTING
 $CLEANUP
 
 echo --------------------
-echo RS double rotation, RS double rotation
+echo RL rotation, RL rotation
 echo --------------------
 
 $VALGRIND $TESTPROG 1 3 2 5 4 
