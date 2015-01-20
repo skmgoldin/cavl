@@ -1,5 +1,6 @@
 #include "nodemanipulation.h"
 #include "resourcecontrol.h"
+#include "rotations.h"
 #include <math.h>
 #include <stdio.h> //test printing only
 
@@ -13,20 +14,21 @@ struct Node *balance(struct Node *node) {
   }
 
   /* Tree is left-heavy. */
-  if(bf == 2) {
+  else if(bf == 2) {
     int lbf = balancefactor(node->lchild);
     if(lbf == 1) {return llrotation(node);}
     else if(lbf == -1) {return lrrotation(node);}
   }
 
   /* Tree is right-heavy. */
-  if(bf == -2) {
+  else if(bf == -2) {
     int lbf = balancefactor(node->lchild);
     if(lbf == 1) {return rlrotation(node);}
     else if(lbf == -1) {return rrrotation(node);}
   }
 
   fprintf(stderr, "%s\n", "Tree is impossibly imbalanced.");
+  exit(1);
   return node;
 }
 
