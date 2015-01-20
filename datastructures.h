@@ -35,6 +35,8 @@ struct Carriage {
   int currheight;
   int rotationstatus;
   int cmpval;
+
+  int (*comparator)(void *, void *); 
 };
 
 #endif /* DATASTRUCTURES_H */

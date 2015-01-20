@@ -35,6 +35,8 @@ struct Carriage *alloccarriage() {
   carriage->rotationstatus = 0;
   carriage->cmpval = 0;
 
+  carriage->comparator = NULL;
+
   return carriage;
 }
 
