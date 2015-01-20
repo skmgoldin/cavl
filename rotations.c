@@ -1,6 +1,9 @@
 #include "rotations.h"
+#include <stdio.h>
 
 struct Node *llrotation(struct Node *root) {
+
+  printf("%s\n", "ll rotation");
 
   struct Node *newroot = root->lchild;
 
@@ -12,14 +15,20 @@ struct Node *llrotation(struct Node *root) {
 
 struct Node *lrrotation(struct Node *root) {
 
-  root->lchild->rchild->lchild = root->lchild;  
+  printf("%s\n", "lr rotation");
+
+  struct Node *temp = root->lchild;
+
   root->lchild = root->lchild->rchild;
+  root->lchild->lchild = temp;
   root->lchild->lchild->rchild = NULL;
 
   return llrotation(root);
 }
 
 struct Node *rrrotation(struct Node *root) {
+
+  printf("%s\n", "rr rotation");
 
   struct Node *newroot = root->rchild;
 
@@ -31,8 +40,12 @@ struct Node *rrrotation(struct Node *root) {
 
 struct Node *rlrotation(struct Node *root) {
 
-  root->rchild->lchild->rchild = root->rchild;  
+  printf("%s\n", "rl rotation");
+
+  struct Node *temp = root->rchild;
+
   root->rchild = root->rchild->lchild;
+  root->rchild->rchild = temp;
   root->rchild->rchild->lchild = NULL;
 
   return rrrotation(root);
