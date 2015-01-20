@@ -3,9 +3,9 @@
 
 #include "datastructures.h"
 
-struct Node *balance(struct Node *node);
+struct Node *balance(struct Node *root);
 
-int balancefactor(struct Node *node);
+int balancefactor(struct Node *root);
 
 int height(struct Node *node);
 
