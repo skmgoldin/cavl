@@ -1,5 +1,5 @@
 CC = clang
-objects = test.o avltree.o resourcecontrol.o nodemanipulation.o
+objects = test.o avltree.o resourcecontrol.o nodemanipulation.o rotations.o
 program = treetest
 
 $(program): $(objects)
@@ -8,7 +8,8 @@ $(program): $(objects)
 test.o: avltree.h
 avltree.o: resourcecontrol.h 
 resourcecontrol.o: avltree.h
-nodemanipulation.o:
+nodemanipulation.o: rotations.h
+rotations.o:
 
 PHONY: clean
 clean:
