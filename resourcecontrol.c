@@ -33,6 +33,7 @@ struct Carriage *alloccarriage() {
   carriage->currheight = 0;
 
   carriage->rotationstatus = 0;
+  carriage->cmpval = 0;
 
   return carriage;
 }

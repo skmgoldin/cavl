@@ -34,6 +34,7 @@ struct Carriage {
   int anchorheight;
   int currheight;
   int rotationstatus;
+  int cmpval;
 };
 
 #endif /* DATASTRUCTURES_H */
