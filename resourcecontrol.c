@@ -36,6 +36,7 @@ struct Carriage *alloccarriage() {
 }
 
 struct Node *allocnode(struct Node *node) {
+  node = malloc(sizeof(struct Node));
 
   node->data = NULL;
 
