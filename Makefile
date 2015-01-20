@@ -3,7 +3,7 @@ objects = test.o avltree.o resourcecontrol.o nodemanipulation.o
 program = treetest
 
 $(program): $(objects)
-	$(CC) -o $(program) $(objects)
+	$(CC) -o $(program) $(objects) -lm
 
 test.o: avltree.h
 avltree.o: resourcecontrol.h 
