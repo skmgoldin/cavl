@@ -10,16 +10,16 @@
  * the tree's node->data pointers need to be deallocated or not.
  */
 
-struct Handle gettree(struct Handle handle,
-                      int (*comparator)(void *, void *), size_t datasize) {
+struct Handle *gettree(struct Handle *handle,
+                       int (*comparator)(void *, void *), size_t datasize) {
   handle = allochandle(handle);
-  handle.comparator = comparator;
-  handle.datasize = datasize;
+  handle->comparator = comparator;
+  handle->datasize = datasize;
   return handle;
 }
 
 struct Node *addnode(struct Handle *handle, void *data) {
-  struct Node *newnode = allocnode();
+  struct Node *newnode = allocnode(newnode);
   newnode->data = data;
 
   if(handle->root == NULL) {

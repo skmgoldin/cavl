@@ -1,12 +1,13 @@
 #include "resourcecontrol.h"
 #include <stdio.h> //for test printing
 
-struct Handle allochandle(struct Handle handle) {
+struct Handle *allochandle(struct Handle *handle) {
+  handle = malloc(sizeof(struct Handle));
 
-  handle.root = NULL;
+  handle->root = NULL;
 
-  handle.comparator = NULL;
-  handle.datasize = 0;
+  handle->comparator = NULL;
+  handle->datasize = 0;
 
   return handle;
 }
@@ -34,8 +35,7 @@ struct Carriage *alloccarriage() {
   return carriage;
 }
 
-struct Node *allocnode() {
-  struct Node *node = malloc(sizeof(struct Node));
+struct Node *allocnode(struct Node *node) {
 
   node->data = NULL;
 

@@ -3,11 +3,11 @@
 
 #include "datastructures.h"
 
-struct Handle allochandle(struct Handle handle);
+struct Handle *allochandle(struct Handle *handle);
 
 struct Carriage *alloccarriage();
 
-struct Node *allocnode();
+struct Node *allocnode(struct Node *newnode);
 
 int deallocnode(struct Node *node);
 
