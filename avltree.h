@@ -7,7 +7,7 @@
 struct Handle *gettree(struct Handle *handle,
                        int (*comparator)(void *, void *), size_t datasize);
 
-struct Node *addnode(struct Handle *handle, void *data);
+struct Handle *addnode(struct Handle *handle, void *data);
 
 int killtree(struct Handle *handle);
 
