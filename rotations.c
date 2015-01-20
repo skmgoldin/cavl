@@ -7,8 +7,8 @@ struct Node *llrotation(struct Node *root) {
 
   struct Node *newroot = root->lchild;
 
-  root->lchild->rchild = root;  
-  root->lchild = NULL;
+  root->lchild = root->lchild->rchild;  
+  newroot->rchild = root;
 
   return newroot;
 }
@@ -32,8 +32,8 @@ struct Node *rrrotation(struct Node *root) {
 
   struct Node *newroot = root->rchild;
 
-  root->rchild->lchild = root;  
-  root->rchild = NULL;
+  root->rchild = root->rchild->lchild;  
+  newroot->lchild = root;
 
   return newroot;
 }
