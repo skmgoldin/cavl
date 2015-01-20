@@ -4,14 +4,14 @@
 struct Node *insert(struct Node *root, struct Node *newnode,
                     int (*comparator)(void *, void *)) {
 
-  int cmpval = comparator(root, newnode);
+  int cmpval = comparator(root->data, newnode->data);
 
   if(cmpval == 0 || cmpval == -1) {
     if(root->lchild == NULL) {
       root->lchild = newnode;
       return balance(root);
     } else if(root->lchild != NULL) {
-      insert(root->lchild, newnode, comparator);
+      root->lchild = insert(root->lchild, newnode, comparator);
       return balance(root);
     }
   }
@@ -21,7 +21,7 @@ struct Node *insert(struct Node *root, struct Node *newnode,
       root->rchild = newnode;
       return balance(root);
     } else if(root->rchild != NULL) {
-      insert(root->rchild, newnode, comparator);
+      root->rchild = insert(root->rchild, newnode, comparator);
       return balance(root);
     }
   }
