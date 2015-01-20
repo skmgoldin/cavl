@@ -57,7 +57,7 @@ int deallocnode(struct Node *node) {
   
   /* Base case */
   if(node->lchild == NULL && node->rchild == NULL) {
-    printf("%s\n", (char *) node->data); 
+//    printf("%s\n", (char *) node->data); 
     free(node);
     return 1;
   }

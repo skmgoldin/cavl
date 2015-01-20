@@ -3,7 +3,7 @@
 
 struct Node *llrotation(struct Node *root) {
 
-  printf("%s\n", "ll rotation");
+  //printf("%s\n", "ll rotation");
 
   struct Node *newroot = root->lchild;
 
@@ -15,7 +15,7 @@ struct Node *llrotation(struct Node *root) {
 
 struct Node *lrrotation(struct Node *root) {
 
-  printf("%s\n", "lr rotation");
+  //printf("%s\n", "lr rotation");
 
   struct Node *temp = root->lchild;
 
@@ -28,7 +28,7 @@ struct Node *lrrotation(struct Node *root) {
 
 struct Node *rrrotation(struct Node *root) {
 
-  printf("%s\n", "rr rotation");
+  //printf("%s\n", "rr rotation");
 
   struct Node *newroot = root->rchild;
 
@@ -40,7 +40,7 @@ struct Node *rrrotation(struct Node *root) {
 
 struct Node *rlrotation(struct Node *root) {
 
-  printf("%s\n", "rl rotation");
+  //printf("%s\n", "rl rotation");
 
   struct Node *temp = root->rchild;
 
