@@ -1,40 +1,41 @@
-#include "nodemanipulation.h"
+#include "balancecontrol.h"
 #include "resourcecontrol.h"
 #include "rotations.h"
 #include <math.h>
 #include <stdio.h> //test printing only
 
-struct Node *balance(struct Node *node) {
+struct Node *balance(struct Node *root) {
 
-  int bf = balancefactor(node);
+  int bf = balancefactor(root);
 
   /* Tree is balanced. */
   if(bf == 0 || bf == 1 || bf == -1) {
-    return node;
+    return root;
   }
 
   /* Tree is left-heavy. */
   else if(bf == 2) {
-    int lbf = balancefactor(node->lchild);
-    if(lbf == 1) {return llrotation(node);}
-    else if(lbf == -1) {return lrrotation(node);}
+    int lbf = balancefactor(root->lchild);
+    if(lbf == 1) {return llrotation(root);}
+    else if(lbf == -1) {return lrrotation(root);}
   }
 
   /* Tree is right-heavy. */
   else if(bf == -2) {
-    int lbf = balancefactor(node->lchild);
-    if(lbf == 1) {return rlrotation(node);}
-    else if(lbf == -1) {return rrrotation(node);}
+    int rbf = balancefactor(root->rchild);
+    if(rbf == 1) {return rlrotation(root);}
+    else if(rbf == -1) {return rrrotation(root);}
   }
 
   fprintf(stderr, "%s\n", "Tree is impossibly imbalanced.");
   exit(1);
-  return node;
 }
 
-int balancefactor(struct Node *node) {
+int balancefactor(struct Node *root) {
 
-  return height(node->lchild) - height(node->rchild);
+  if(root == NULL) {return 0;}
+
+  return height(root->lchild) - height(root->rchild);
 }
 
 int height(struct Node *node) {
