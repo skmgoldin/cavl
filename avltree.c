@@ -24,7 +24,7 @@ struct Node *addnode(struct Handle *handle, void *data) {
 
   if(handle->root == NULL) {
     handle->root = newnode;
-    return newnode;
+    return balance(newnode);
   }
 
   handle = addnodemanager(handle, newnode);
