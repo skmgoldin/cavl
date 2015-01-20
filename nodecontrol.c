@@ -1,4 +1,4 @@
-#include "nodemanipulation.h"
+#include "balancecontrol.h"
 #include <stdio.h>
 
 struct Node *insert(struct Node *root, struct Node *newnode,
@@ -20,7 +20,7 @@ struct Node *insert(struct Node *root, struct Node *newnode,
     if(root->rchild == NULL) {
       root->rchild = newnode;
       return balance(root);
-    } else if(root->lchild != NULL) {
+    } else if(root->rchild != NULL) {
       insert(root->rchild, newnode, comparator);
       return balance(root);
     }
