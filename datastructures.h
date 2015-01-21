@@ -15,20 +15,4 @@ struct Node {
   struct Node *rchild;
 };
 
-struct Carriage {
-  struct Node *newnode;
-  struct Node *currnode;
-  char currnodevia;
-  struct Node *parent;
-  char parentvia;
-  struct Node *grandparent;
-  char grandparentvia;
-  struct Node *greatgrandparent;
-  char greatgrandparentvia;
-  int anchorheight;
-  int currheight;
-  int rotationstatus;
-  int cmpval;
-};
-
 #endif /* DATASTRUCTURES_H */

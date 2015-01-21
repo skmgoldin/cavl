@@ -12,29 +12,6 @@ struct Handle *allochandle(struct Handle *handle) {
   return handle;
 }
 
-struct Carriage *alloccarriage() {
-  struct Carriage *carriage = malloc(sizeof(struct Carriage));
-
-  carriage->newnode = NULL;
-  carriage->currnode = NULL;
-  carriage->parent = NULL;
-  carriage->grandparent = NULL;
-  carriage->greatgrandparent = NULL;
-  
-  carriage->currnodevia = 'x';
-  carriage->parentvia = 'x';
-  carriage->grandparentvia = 'x';
-  carriage->greatgrandparentvia = 'x';
-
-  carriage->anchorheight = 0;
-  carriage->currheight = 0;
-
-  carriage->rotationstatus = 0;
-  carriage->cmpval = 0;
-
-  return carriage;
-}
-
 struct Node *allocnode(struct Node *node) {
   node = malloc(sizeof(struct Node));
 
