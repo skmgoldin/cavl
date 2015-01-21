@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "avltree.h"
+#include "interface.h"
 #include "resourcecontrol.h"
 #include "balancecontrol.h"
 #include "nodecontrol.h"

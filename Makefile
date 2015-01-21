@@ -1,13 +1,13 @@
 CC = clang
-objects = test.o avltree.o resourcecontrol.o balancecontrol.o rotations.o nodecontrol.o
+objects = test.o interface.o resourcecontrol.o balancecontrol.o rotations.o nodecontrol.o
 program = treetest
 
 $(program): $(objects)
 	$(CC) -o $(program) $(objects) -lm
 
-test.o: avltree.h
+test.o: interface.h
 avltree.o: resourcecontrol.h 
-resourcecontrol.o: avltree.h
+resourcecontrol.o: interface.h
 balancecontrol.o: rotations.h
 rotations.o:
 nodecontrol.o:

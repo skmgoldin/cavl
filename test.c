@@ -1,4 +1,4 @@
-#include "avltree.h"
+#include "interface.h"
 #include <assert.h>
 #include <stdio.h>
 #include <time.h>
