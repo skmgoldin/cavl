@@ -27,7 +27,7 @@ struct Handle *addnode(struct Handle *handle, void *data) {
   struct Node *newnode = allocnode(newnode);
   newnode->data = data;
 
-//  printf("%s%s\n", "------------------------------Adding node ", newnode->data);
+  //printf("%s%d\n", "Adding node ", *(int *) newnode->data);
 
   if(handle->root == NULL) {
     handle->root = newnode;

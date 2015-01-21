@@ -7,7 +7,7 @@
 struct Node *balance(struct Node *root) {
 
   double bf = balancefactor(root);
- // printf("%s%s%s%0.f\n", "Balance Factor of node ", root->data, " is ", bf);
+  //printf("%s%d%s%0.f\n", "Balance Factor of node ", *(int *) root->data, " is ", bf);
 
   /* Tree is balanced. */
   if(bf == 0 || bf == 1 || bf == -1) {
@@ -46,7 +46,7 @@ double height(struct Node *node) {
     return -1;
   }
 
-//  printf("%s%s%s%0.f\n", "Height of node ", node->data, " is ", fmax(height(node->lchild), height(node->rchild)) + 1);
+  //printf("%s%d%s%0.f\n", "Height of node ", *(int *) node->data, " is ", fmax(height(node->lchild), height(node->rchild)) + 1);
 
   return fmax(height(node->lchild), height(node->rchild)) + 1;
 }
