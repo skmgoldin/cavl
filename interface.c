@@ -2,7 +2,7 @@
 #include "interface.h"
 #include "resourcecontrol.h"
 #include "balancecontrol.h"
-#include "nodecontrol.h"
+#include "insert-delete.h"
 #include <stdio.h>
 
 /********************
