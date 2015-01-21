@@ -16,17 +16,27 @@ int intcomparator(void *rootvalue, void *newvalue) {
 }
 
 int main(int argc, char **argv) {
-  
+ 
   printf("%s\n", "Building tree");
   struct Handle *handle = gettree(handle, &intcomparator, sizeof(int));
+ 
+  if(argc < 3) {
 
-  srand(time(NULL));
-  int quantity = atoi(*(argv + 1));
+    srand(time(NULL));
+    int quantity = atoi(*(argv + 1));
 
-  for(int x = 0; x < quantity; x++) {
-    int *node = malloc(sizeof(int));
-    *node = rand();
-    handle = addnode(handle, (void *) node); 
+    for(int x = 0; x < quantity; x++) {
+      int *node = malloc(sizeof(int));
+      *node = rand();
+      handle = addnode(handle, (void *) node); 
+    }
+  } else {
+
+    for(int x = 1; x < argc; x++) {
+      int *node = malloc(sizeof(int));
+      *node = atoi(*(argv + x));
+      handle = addnode(handle, (void *) node); 
+    }
   }
 
   printf("%s\n", "Tree built.");
