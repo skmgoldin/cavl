@@ -42,6 +42,11 @@ struct Handle *addnode(struct Handle *handle, void *data) {
   return handle;
 }
 
+void *find(struct Handle *handle, void *data) {
+
+  getnode(handle->root, data, handle->comparator);
+}
+
 /********************
  * Deallocate the tree and all of its nodes and data.
  ********************/
