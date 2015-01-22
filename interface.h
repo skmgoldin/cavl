@@ -20,6 +20,8 @@ struct Handle *gettree(struct Handle *handle,
  ********************/
 struct Handle *addnode(struct Handle *handle, void *data);
 
+void *find(struct Handle *handle, void *data) {
+
 /********************
  * Deallocate the tree and all of its nodes and data.
  ********************/
