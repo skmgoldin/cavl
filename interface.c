@@ -3,6 +3,7 @@
 #include "resourcecontrol.h"
 #include "balancecontrol.h"
 #include "insert-delete.h"
+#include "traversal.h"
 #include <stdio.h>
 
 /********************
@@ -44,7 +45,7 @@ struct Handle *addnode(struct Handle *handle, void *data) {
 
 void *find(struct Handle *handle, void *data) {
 
-  struct Node *result =  getnode(handle->root, data, handle->comparator);
+  struct Node *result = getnode(handle->root, data, handle->comparator);
 
   return result->data;
 }
