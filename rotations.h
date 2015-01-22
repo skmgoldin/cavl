@@ -1,3 +1,6 @@
+#ifndef ROTATIONS_H
+#define ROTATIONS_H
+
 #include "datastructures.h"
 
 /********************
@@ -25,3 +28,5 @@ struct Node *rrrotation(struct Node *root);
  * and returns the new root of its argument's subtree.
  ********************/
 struct Node *rlrotation(struct Node *root);
+
+#endif /* ROTATIONS_H */
