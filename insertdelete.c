@@ -1,3 +1,4 @@
+#include "insertdelete.h"
 #include "balancecontrol.h"
 #include <stdio.h>
 
