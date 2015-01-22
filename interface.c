@@ -44,7 +44,9 @@ struct Handle *addnode(struct Handle *handle, void *data) {
 
 void *find(struct Handle *handle, void *data) {
 
-  getnode(handle->root, data, handle->comparator);
+  struct Node *result =  getnode(handle->root, data, handle->comparator);
+
+  return result->data;
 }
 
 /********************
