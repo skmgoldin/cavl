@@ -35,6 +35,3 @@ struct Node *insert(struct Node *root, struct Node *newnode,
   fprintf(stderr, "%s\n", "Insertion failed.");
   exit(1);
 }
-
-// A rebalancing will always return a new root, so if we get a new root we know
-// the rebalancing is done!
