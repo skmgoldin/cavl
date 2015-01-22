@@ -34,7 +34,7 @@ struct Handle *addnode(struct Handle *handle, void *data) {
 
   if(handle->root == NULL) {
     handle->root = newnode;
-    handle->root = balance(handle->root);
+    handle->root->height++;
     return handle;
   }
 
