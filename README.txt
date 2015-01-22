@@ -18,6 +18,6 @@ queries remain log-n efficient, however.
 
 To-Do:
 - Traversals
-- Searches
+- Improved searching
 - Deletions
 - CPU-efficient fork
