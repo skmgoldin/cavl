@@ -15,7 +15,7 @@ struct Node *insert(struct Node *root, struct Node *newnode,
   if(cmpval == 0 || cmpval == -1) {
     if(root->lchild == NULL) {
       root->lchild = newnode;
-      return balance(root);
+      return root;
     } else if(root->lchild != NULL) {
       root->lchild = insert(root->lchild, newnode, comparator);
       return balance(root);
@@ -25,7 +25,7 @@ struct Node *insert(struct Node *root, struct Node *newnode,
   if(cmpval == 1) {
     if(root->rchild == NULL) {
       root->rchild = newnode;
-      return balance(root);
+      return root;
     } else if(root->rchild != NULL) {
       root->rchild = insert(root->rchild, newnode, comparator);
       return balance(root);
@@ -35,3 +35,6 @@ struct Node *insert(struct Node *root, struct Node *newnode,
   fprintf(stderr, "%s\n", "Insertion failed.");
   exit(1);
 }
+
+// A rebalancing will always return a new root, so if we get a new root we know
+// the rebalancing is done!
