@@ -17,7 +17,9 @@ recurse through the entire tree after every insertion and deletion. Other
 queries remain log-n efficient, however.
 
 To-Do:
-- Traversals
-- Improved searching
 - Deletions
-- CPU-efficient fork
+- CPU-efficient version
+- Library output
+- Better tests
+- More traversals
+- Improved searching?
