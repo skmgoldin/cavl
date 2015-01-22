@@ -17,6 +17,8 @@ struct Node *allocnode(struct Node *node) {
 
   node->data = NULL;
 
+  node->height = -1;
+
   node->lchild = NULL;
   node->rchild = NULL;
 
