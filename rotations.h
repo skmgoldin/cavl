@@ -29,4 +29,6 @@ struct Node *rrrotation(struct Node *root);
  ********************/
 struct Node *rlrotation(struct Node *root);
 
+int updateheights(struct Node *node);
+
 #endif /* ROTATIONS_H */

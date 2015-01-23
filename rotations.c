@@ -1,5 +1,6 @@
 #include "rotations.h"
 #include <stdio.h>
+#include <math.h>
 
 /********************
  * Left-left rotation.
@@ -13,6 +14,8 @@ struct Node *llrotation(struct Node *root) {
 
   root->lchild = root->lchild->rchild;  
   newroot->rchild = root;
+
+  updateheights(newroot);
 
   return newroot;
 }
@@ -41,12 +44,14 @@ struct Node *lrrotation(struct Node *root) {
  ********************/
 struct Node *rrrotation(struct Node *root) {
 
-  //printf("%s\n", "rr rotation");
+  printf("%s\n", "rr rotation");
 
   struct Node *newroot = root->rchild;
 
   root->rchild = root->rchild->lchild;  
   newroot->lchild = root;
+
+  updateheights(newroot);
 
   return newroot;
 }
@@ -67,4 +72,20 @@ struct Node *rlrotation(struct Node *root) {
   root->rchild->rchild = temp;
 
   return rrrotation(root);
+}
+
+int updateheights(struct Node *node) {
+
+  if(node == NULL) {return -1;}
+
+  if(node->lchild == NULL && node->rchild == NULL) {
+    //printf("%s\n", (char *) node->data); 
+    node->height = 0;
+    return node->height;;
+  }
+
+  node->height = fmax(updateheights(node->lchild),
+                      updateheights(node->rchild)) + 1;
+
+  return 1; // Never happens
 }

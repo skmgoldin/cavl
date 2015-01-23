@@ -1,5 +1,6 @@
 #include "insertdelete.h"
 #include "balancecontrol.h"
+#include <math.h>
 #include <stdio.h>
 
 /********************
@@ -14,20 +15,24 @@ struct Node *insert(struct Node *root, struct Node *newnode,
 
   if(cmpval == 0 || cmpval == -1) {
     if(root->lchild == NULL) {
+      newnode->height++;
       root->lchild = newnode;
       return root;
     } else if(root->lchild != NULL) {
       root->lchild = insert(root->lchild, newnode, comparator);
+      root->height = fmax(height(root->lchild), height(root->rchild)); 
       return balance(root);
     }
   }
 
   if(cmpval == 1) {
     if(root->rchild == NULL) {
+      newnode->height++;
       root->rchild = newnode;
       return root;
     } else if(root->rchild != NULL) {
       root->rchild = insert(root->rchild, newnode, comparator);
+      root->height = fmax(height(root->lchild), height(root->rchild)); 
       return balance(root);
     }
   }

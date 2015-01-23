@@ -14,12 +14,12 @@ struct Node *balance(struct Node *root);
  * Returns the balance factor of node *root, which is the height of its lchild
  * minus the height of its rchild.
  ********************/
-double balancefactor(struct Node *root);
+int balancefactor(struct Node *root);
 
 /********************
  * Get node height.
  * Returns the height of *node, which is the fmax() + 1 of its child nodes.
  ********************/
-double height(struct Node *node);
+int height(struct Node *node);
 
 #endif /* NODEMANIPULATION_H */
