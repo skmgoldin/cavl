@@ -74,6 +74,10 @@ struct Node *rlrotation(struct Node *root) {
   return rrrotation(root);
 }
 
+/********************
+ * Update heights of all nodes in subtree
+ * returns height of *node
+ ********************/
 int updateheights(struct Node *node) {
 
   if(node == NULL) {return -1;}
